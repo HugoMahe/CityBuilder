@@ -1,6 +1,5 @@
-extends Node
-class_name Batiment
-var production
+extends "res://Ressources/Ressource.gd"
+
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -8,8 +7,8 @@ var production
 
 
 # Called when the node enters the scene tree for the first time.
-func produit():
-	pass	
+func _ready():
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

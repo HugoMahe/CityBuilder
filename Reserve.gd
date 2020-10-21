@@ -1,9 +1,10 @@
 extends Node
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# Ensemble des valeurs du stockage
+var stockageCharbon = 1000
+var stockageNourriture = 1000
+var stockageBois = 1000
+var stockageMetal = 1000
 
 
 # Called when the node enters the scene tree for the first time.

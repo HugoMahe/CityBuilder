@@ -1,10 +1,8 @@
 extends Spatial
-var mapClass = load("GridMap.gd")
+var mapClass = load("./MapScript/GridMap.gd")
 var map = mapClass.new()
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+var reserveClass = load("res://Reserve.gd")
+var stockage = reserveClass.new() 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

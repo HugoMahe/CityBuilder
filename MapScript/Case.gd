@@ -5,32 +5,39 @@ class_name Case
 # var a = 2
 # var b = "text"
 var constructible= true setget setConstructible, getConstructible
-var BatimentClasse = load("Batiment.gd")
+var BatimentClasse = load("res://MapScript/Batiment.gd")
 var batiment = null setget setBatiment, getBatiment
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	
+# Get constuctible boolean 
 func getConstructible():
 	return constructible
 
+# set le terrain à constructible ou non  
 func setConstructible(nouvelleVar):
-	constructible = nouvelleVar
+	constructible= nouvelleVar
 
+# construire un batiment 
 func setBatiment(batimentParam):
 	batiment= batimentParam
 	setConstructible(false)
 	print(getConstructible())
-
-func getBatiment():
-	return batiment
 	
+# Détruire un batiment
+func removeBatiment():
+	batiment=null
+	setConstructible(true)
+
+# Recuperation du batiment
+func getBatiment():
+	return batiment.getBatiment()
+	
+
+# Joue le tour sur la case
 func jouer():
 	if(constructible==false):
 		print("Joue sa case:")
 		batiment.produit()
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

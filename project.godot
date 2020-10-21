@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Batiment",
 "language": "GDScript",
-"path": "res://Batiment.gd"
+"path": "res://MapScript/Batiment.gd"
 }, {
 "base": "Node",
 "class": "Case",
 "language": "GDScript",
-"path": "res://Case.gd"
+"path": "res://MapScript/Case.gd"
 } ]
 _global_script_class_icons={
 "Batiment": "",

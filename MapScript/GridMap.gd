@@ -81,6 +81,11 @@ func checkTypeProduction():
 	if(retour.get_class()=="Bois"):
 		bois=retour.getQuantite()
 	retour=0
+	
+func updateGrid():
+	pass
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

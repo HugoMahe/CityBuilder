@@ -39,9 +39,10 @@ func _ready():
 func jouer():
 	print("----------------------------------- Lancement de la partie ------------------------------")
 	testBatiment()
-	jouerTour()
+	var ressourcesTour = jouerTour()
 	printEnsembleBatiment()
-	printAllRessourcesFromTour()
+	#printAllRessourcesFromTour()
+	return ressourcesTour
 	#removeBatiment(0,0)
 	
 #	
@@ -51,6 +52,8 @@ func jouerTour():
 			if(matrix[x][y].getConstructible()==false):
 					retour=matrix[x][y].jouer()
 					checkTypeProduction()
+	var tableau = [bois, charbon, nourriture ]
+	return tableau
 
 
 func testBatiment():
@@ -65,9 +68,9 @@ func removeBatiment(x,y):
 
 func printAllRessourcesFromTour():
 	print("------------------  AFFICHAGE DES RESSOURCES POUR LE TOUR: ------------------------- ")
-	print(nourriture)
-	print(charbon)
-	print(bois)
+	print("Nourriture: ",nourriture)
+	print("Charbon: ",charbon)
+	print("Bois: ",bois)
 
 
 func checkTypeProduction():

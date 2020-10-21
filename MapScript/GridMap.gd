@@ -3,11 +3,16 @@ extends GridMap
 var matrix = []
 var Case = load("res://MapScript/Case.gd")
 var CabaneClass = load("res://MapScript/Batiment/Cabane.gd")
+var ScierieClass = load("res://MapScript/Batiment/Scierie.gd")
+var UsineCharbonClass = load("res://MapScript/Batiment/UsineCharbon.gd")
 var ready = false
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
+
+# var pour la production de ressource pour le tour donnée
+var retour
+var nourriture = 0 
+var charbon = 0
+var bois = 0 
 
 func genererGrid(n):
 	for x in range(n):
@@ -22,7 +27,7 @@ func printEnsembleBatiment():
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if (matrix[x][y].getConstructible()==false):
-				print(matrix[x][y].getBatiment())
+				print(" CASE [",x, "]","[", y, "]: ", matrix[x][y].getBatiment())
 
 
 # Called when the node enters the scene tree for the first time.
@@ -32,28 +37,47 @@ func _ready():
 	
 #	
 func jouer():
-	print("Lancement jeu")
+	print("----------------------------------- Lancement de la partie ------------------------------")
 	testBatiment()
 	jouerTour()
 	printEnsembleBatiment()
-	removeBatiment(0,0)
+	printAllRessourcesFromTour()
+	#removeBatiment(0,0)
 	
 #	
 func jouerTour():
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
-			matrix[x][y].jouer()
+			if(matrix[x][y].getConstructible()==false):
+					retour=matrix[x][y].jouer()
+					checkTypeProduction()
 
 
 func testBatiment():
 	var Cabane = CabaneClass.new()
 	matrix[0][0].setBatiment(Cabane)
-	print("Cabane construite")
+	matrix[0][1].setBatiment(UsineCharbonClass.new())
+	matrix[0][2].setBatiment(ScierieClass.new())
 	
 func removeBatiment(x,y):
 	matrix[x][y].removeBatiment()
 	print("Batiment détruit")
 
+func printAllRessourcesFromTour():
+	print("------------------  AFFICHAGE DES RESSOURCES POUR LE TOUR: ------------------------- ")
+	print(nourriture)
+	print(charbon)
+	print(bois)
+
+
+func checkTypeProduction():
+	if(retour.get_class()=="Nourriture"):
+		nourriture=retour.getQuantite()
+	if(retour.get_class()=="Charbon"):
+		charbon=retour.getQuantite()
+	if(retour.get_class()=="Bois"):
+		bois=retour.getQuantite()
+	retour=0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

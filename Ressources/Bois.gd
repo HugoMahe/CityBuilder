@@ -1,5 +1,4 @@
-extends "res://Ressources/Ressource.gd"
-
+extends Node
 
 var quantite=0
 
@@ -15,7 +14,4 @@ func getQuantite():
 	return quantite
 	
 func get_class():
-	return "Charbon"
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	return "Bois"

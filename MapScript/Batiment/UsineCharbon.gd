@@ -1,6 +1,5 @@
-extends Batiment
-var nourritureClass = load("res://Ressources/Nourriture.gd")
-
+extends Node
+var charbonClass = load("res://Ressources/Charbon.gd")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -12,13 +11,12 @@ func _ready():
 	pass # Replace with function body.
 
 func produit():
-	var nourriture = nourritureClass.new()
-	nourriture.setQuantite(50)
-	return nourriture
-
+	var charbon = charbonClass.new()
+	charbon.setQuantite(30)
+	return charbon 
+	
 func getBatiment():
-	return "Cabane"
-
+	return "UsineCharbon"
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

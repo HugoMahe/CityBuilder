@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Models/Terrain/TerrainNeutre.dae" type="PackedScene" id=1]
+[ext_resource path="res://Models/Terrain/TerrainRiviere.dae" type="PackedScene" id=2]
+[ext_resource path="res://Models/Scierie.dae" type="PackedScene" id=3]
+[ext_resource path="res://Models/Terrain/Arbre.dae" type="PackedScene" id=4]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, -0.354928, 0.934894, 0, -0.934894, -0.354928, 0, 14.5568, 3.92466 )
+light_specular = 0.0
+shadow_enabled = true
+directional_shadow_mode = 1
+directional_shadow_split_1 = 0.0
+
+[node name="TerrainNeutre" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.000224113 )
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.98724, 14.0964 )
+
+[node name="TerrainRiviere" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.400033, -19.5216 )
+
+[node name="Arbre" parent="." instance=ExtResource( 4 )]
+
+[node name="Scierie" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 30.898, 0, 30.628 )

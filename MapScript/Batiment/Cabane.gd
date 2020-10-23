@@ -7,6 +7,8 @@ var nourritureClass = load("res://Ressources/Nourriture.gd")
 # var a = 2
 # var b = "text"
 
+var x=0
+var y=0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -45,6 +45,24 @@ func getCharbon():
 	
 func getNourriture():
 	return stockageNourriture
+	
+func peutPrelever(ressource, nombre):
+	if(ressource=="Nourriture"):
+		if(getNourriture()<nombre):
+			return false
+		else:
+			return true
+	elif(ressource=="Bois"):
+		if(getBois()<nombre):
+			return false
+		else:
+			return true
+	if(ressource=="Charbon"):
+		if(getCharbon()<nombre):
+			return false
+		else:
+			return true
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 

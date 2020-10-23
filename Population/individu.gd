@@ -4,6 +4,8 @@ extends Node
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+var sortie = false
+var fonction = null
 
 
 # Called when the node enters the scene tree for the first time.

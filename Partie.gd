@@ -13,6 +13,7 @@ func _ready():
 	ressourceDuTour= map.jouer(self, gridMap)
 	remplirStockage()
 	stockage.printReserve()
+	print("ACHAT DE CABANE : ",peutAcheterBatiment("Cabane"))
 	pass # Replace with function body.
 
 
@@ -39,6 +40,24 @@ func creerBatiment(xCoor,zCoor, typeBatiment):
 	self.add_child(memoireTest)
 	map.ajoutBatimentMemoire("cabane")
 pass
+
+
+
+func peutAcheterBatiment(batiment):
+	var coutBois=0
+	var coutCharbon=0
+	var coutMetal=0
+	var coutNouriture=0
+	if(batiment=="Cabane"):
+		if(stockage.peutPrelever("Bois",150)):
+			if(stockage.peutPrelever("Nourriture",100)):
+				return true
+	elif(batiment=="Scierie"):
+		if(stockage.peutPrelever("Bois",300)):
+			if(stockage.peutPrelever("Nourriture",50)):
+				return true
+		return false
+		coutNouriture=200
 
 
 	

@@ -1,6 +1,7 @@
 extends Node
+var individu= load("res://Population/individu.gd")
 
-
+tableauIndividus = 
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

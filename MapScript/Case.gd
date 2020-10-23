@@ -1,9 +1,6 @@
 extends Node
 class_name Case
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var constructible= true setget setConstructible, getConstructible
 var BatimentClasse = load("res://MapScript/Batiment.gd")
 var batiment = null setget setBatiment, getBatiment

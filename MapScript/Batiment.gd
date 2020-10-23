@@ -6,8 +6,9 @@ var production
 # var a = 2
 # var b = "text"
 var nodeBatiment
-var x
-var y
+var position3DX
+var position3Dy
+var position3Dz
 
 # Called when the node enters the scene tree for the first time.
 func produit():
@@ -16,6 +17,10 @@ func produit():
 func getBatiment():
 	pass
 	
+func set3Dcoordinates(x,y,z):
+	position3DX=x
+	position3Dy=y
+	position3Dz=z
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

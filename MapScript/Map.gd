@@ -92,15 +92,13 @@ func updateGrid():
 	
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		var ray_origin = get_viewport().get_camera().project_ray_origin(event.position)
-		var ray_direct = get_viewport().get_camera().project_ray_normal(event.position)
-		var from = ray_origin
-		var to = ray_origin + ray_direct * 1000
-		var dropPlane  = Plane(Vector3(0, 0, 1000), 0)
-		var result = dropPlane.intersects_ray(from,to)
-		print("POSITION 3D", result)
+		var from = get_viewport().get_camera().project_ray_origin(event.position)
+		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
+		var positionX = from.x - nor.x * (from.y/nor.y)
+		var positionZ = from.z - nor.z * (from.y/nor.y)
+		print("POSITION 3D: ", positionX, ": ", positionZ)
 		#var hit = space_state.intersect_ray(from,to)
-		creerBatiment(result.x,(-result.y))
+		creerBatiment(positionX,positionZ)
 		#print("Batiment placé")
 	pass
 	

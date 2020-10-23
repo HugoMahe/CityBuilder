@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/PaintedWood005_2K_Roughness.png-2a982fee0210695ddfc3843bb7a7206c.s3tc.stex"
-path.etc2="res://.import/PaintedWood005_2K_Roughness.png-2a982fee0210695ddfc3843bb7a7206c.etc2.stex"
+path.s3tc="res://.import/PaintedWood005_2K_Roughness.png-96b8edbf7b936065e61051a9bb6b0255.s3tc.stex"
+path.etc2="res://.import/PaintedWood005_2K_Roughness.png-96b8edbf7b936065e61051a9bb6b0255.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="C:/Users/hugo2/OneDrive/Documents/Master/CityBuilder/Textures/PaintedWood/PaintedWood005_2K_Roughness.png"
-dest_files=[ "res://.import/PaintedWood005_2K_Roughness.png-2a982fee0210695ddfc3843bb7a7206c.s3tc.stex", "res://.import/PaintedWood005_2K_Roughness.png-2a982fee0210695ddfc3843bb7a7206c.etc2.stex" ]
+source_file="res://Textures/PaintedWood/PaintedWood005_2K_Roughness.png"
+dest_files=[ "res://.import/PaintedWood005_2K_Roughness.png-96b8edbf7b936065e61051a9bb6b0255.s3tc.stex", "res://.import/PaintedWood005_2K_Roughness.png-96b8edbf7b936065e61051a9bb6b0255.etc2.stex" ]
 
 [params]
 

@@ -34,7 +34,7 @@ func _input(event):
 pass
 
 func creerBatiment(xCoor,zCoor, typeBatiment):
-	var memoireTest = load("res://Models/Arbre.dae").instance()
+	var memoireTest = load("res://Models/Cabane.dae").instance()
 	memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
 	self.add_child(memoireTest)
 	map.ajoutBatimentMemoire("cabane")

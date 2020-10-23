@@ -23,11 +23,23 @@ _global_script_classes=[ {
 "class": "Case",
 "language": "GDScript",
 "path": "res://MapScript/Case.gd"
+}, {
+"base": "ResourceFormatLoader",
+"class": "HTerrainDataLoader",
+"language": "GDScript",
+"path": "res://godot_heightmap_plugin-25f26464f38438d68cdfaaa93ff04e026122ce43/addons/zylann.hterrain/hterrain_resource_loader.gd"
+}, {
+"base": "ResourceFormatSaver",
+"class": "HTerrainDataSaver",
+"language": "GDScript",
+"path": "res://godot_heightmap_plugin-25f26464f38438d68cdfaaa93ff04e026122ce43/addons/zylann.hterrain/hterrain_resource_saver.gd"
 } ]
 _global_script_class_icons={
 "Batiment": "",
 "Cabane": "",
-"Case": ""
+"Case": "",
+"HTerrainDataLoader": "",
+"HTerrainDataSaver": ""
 }
 
 [application]

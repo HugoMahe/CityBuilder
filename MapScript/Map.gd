@@ -2,6 +2,7 @@ extends MeshInstance
 
 var matrix = []
 var Case = load("res://MapScript/Case.gd")
+var Cabane = load("res://MapScript/Batiment/Cabane.gd").new()
 var ready = false
 
 
@@ -12,7 +13,6 @@ var charbon = 0
 var bois = 0 
 
 var noeudSpatial
-var cabaneClass = load("res://MapScript/Batiment/Cabane.gd")
 
 
 func genererGrid(n):
@@ -41,7 +41,6 @@ func jouer(xParam, memoireBatimentParam):
 	print("----------------------------------- Lancement de la partie ------------------------------")
 	noeudSpatial = xParam
 	print("VALEUR DE test :", noeudSpatial)
-	#testBatiment()
 	var ressourcesTour = jouerTour()
 	printEnsembleBatiment()
 	#printAllRessourcesFromTour()
@@ -56,13 +55,6 @@ func jouerTour():
 					checkTypeProduction()
 	var tableau = [bois, charbon, nourriture ]
 	return tableau
-
-
-#func testBatiment():
-#	var Cabane = CabaneClass.new()
-#	matrix[0][0].setBatiment(Cabane)
-#	matrix[0][1].setBatiment(UsineCharbonClass.new())
-#	matrix[0][2].setBatiment(ScierieClass.new())
 	
 func removeBatiment(x,y):
 	matrix[x][y].removeBatiment()
@@ -90,7 +82,11 @@ func ajoutBatimentMemoire(batimentType):
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):
-				matrix[x][y].setBatiment(cabaneClass.new())
+				print(matrix[x][y])
+				print(Cabane)
+				#matrix[x][y].setBatiment(Cabane.new())
+				#print("Batiment :", matrix[x][y].getBatiment())
+				#matrix[x][y].getBatiment().setCoordonnes(x,y)
 				return
 	pass 
 

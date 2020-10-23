@@ -1,4 +1,5 @@
 extends Batiment
+class_name Cabane
 var nourritureClass = load("res://Ressources/Nourriture.gd")
 
 
@@ -18,7 +19,14 @@ func produit():
 
 func getBatiment():
 	return "Cabane"
-
+	pass 
+	
+func setCoordonnes(xParam, yParam):
+	x=xParam
+	y=yParam
+	print("Param rentré")
+	pass
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

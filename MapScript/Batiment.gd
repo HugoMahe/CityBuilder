@@ -6,9 +6,8 @@ var production
 # var a = 2
 # var b = "text"
 var nodeBatiment
-
-func new(noeud):
-	var nodeBatiment = noeud
+var x
+var y
 
 # Called when the node enters the scene tree for the first time.
 func produit():
@@ -16,6 +15,7 @@ func produit():
 
 func getBatiment():
 	pass
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

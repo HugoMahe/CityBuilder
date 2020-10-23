@@ -23,6 +23,7 @@ func setConstructible(nouvelleVar):
 # construire un batiment 
 func setBatiment(batimentParam):
 	batiment= batimentParam
+	print("BATIMENT SET", batimentParam)
 	setConstructible(false)
 	
 # Détruire un batiment
@@ -32,7 +33,7 @@ func removeBatiment():
 
 # Recuperation du batiment
 func getBatiment():
-	return batiment.getBatiment()
+	print("TEST", batiment.getBatiment())
 	
 
 # Joue le tour sur la case

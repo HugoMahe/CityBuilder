@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/Blue_Ice_001_ROUGH.jpg-d74dd56debe2bfe17c72600f350a4ae2.s3tc.stex"
-path.etc2="res://.import/Blue_Ice_001_ROUGH.jpg-d74dd56debe2bfe17c72600f350a4ae2.etc2.stex"
+path.s3tc="res://.import/Blue_Ice_001_ROUGH.jpg-d4f3787ba9a0eaeeff76c84ee803a4b0.s3tc.stex"
+path.etc2="res://.import/Blue_Ice_001_ROUGH.jpg-d4f3787ba9a0eaeeff76c84ee803a4b0.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="H:/Ergonomie 2D 3D/CityBuilder/Textures/Blue_Ice_001_SD/Blue_Ice_001_ROUGH.jpg"
-dest_files=[ "res://.import/Blue_Ice_001_ROUGH.jpg-d74dd56debe2bfe17c72600f350a4ae2.s3tc.stex", "res://.import/Blue_Ice_001_ROUGH.jpg-d74dd56debe2bfe17c72600f350a4ae2.etc2.stex" ]
+source_file="res://Textures/Blue_Ice_001_SD/Blue_Ice_001_ROUGH.jpg"
+dest_files=[ "res://.import/Blue_Ice_001_ROUGH.jpg-d4f3787ba9a0eaeeff76c84ee803a4b0.s3tc.stex", "res://.import/Blue_Ice_001_ROUGH.jpg-d4f3787ba9a0eaeeff76c84ee803a4b0.etc2.stex" ]
 
 [params]
 

@@ -24,7 +24,6 @@ func getBatiment():
 func setCoordonnes(xParam, yParam):
 	x=xParam
 	y=yParam
-	print("Param rentré")
 	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

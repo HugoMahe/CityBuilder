@@ -2,8 +2,8 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/ice_0001_base_color_2k.jpg-681aab2b21fe55e4e4fc28dbbb91b930.s3tc.stex"
-path.etc2="res://.import/ice_0001_base_color_2k.jpg-681aab2b21fe55e4e4fc28dbbb91b930.etc2.stex"
+path.s3tc="res://.import/ice_0001_base_color_2k.jpg-80884cc4ee892a3bb1d4e7c187003b12.s3tc.stex"
+path.etc2="res://.import/ice_0001_base_color_2k.jpg-80884cc4ee892a3bb1d4e7c187003b12.etc2.stex"
 metadata={
 "imported_formats": [ "s3tc", "etc2" ],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Textures/Ice/ice_0001_base_color_2k.jpg"
-dest_files=[ "res://.import/ice_0001_base_color_2k.jpg-681aab2b21fe55e4e4fc28dbbb91b930.s3tc.stex", "res://.import/ice_0001_base_color_2k.jpg-681aab2b21fe55e4e4fc28dbbb91b930.etc2.stex" ]
+source_file="H:/Ergonomie 2D 3D/CityBuilder/Textures/Ice/ice_0001_base_color_2k.jpg"
+dest_files=[ "res://.import/ice_0001_base_color_2k.jpg-80884cc4ee892a3bb1d4e7c187003b12.s3tc.stex", "res://.import/ice_0001_base_color_2k.jpg-80884cc4ee892a3bb1d4e7c187003b12.etc2.stex" ]
 
 [params]
 

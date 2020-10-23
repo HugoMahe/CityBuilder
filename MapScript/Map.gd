@@ -2,9 +2,6 @@ extends MeshInstance
 
 var matrix = []
 var Case = load("res://MapScript/Case.gd")
-var CabaneClass = load("res://MapScript/Batiment/Cabane.gd")
-var ScierieClass = load("res://MapScript/Batiment/Scierie.gd")
-var UsineCharbonClass = load("res://MapScript/Batiment/UsineCharbon.gd")
 var ready = false
 
 
@@ -14,8 +11,9 @@ var nourriture = 0
 var charbon = 0
 var bois = 0 
 
-var x
 var noeudSpatial
+var cabaneClass = load("res://MapScript/Batiment/Cabane.gd")
+
 
 func genererGrid(n):
 	for x in range(n):
@@ -43,12 +41,11 @@ func jouer(xParam, memoireBatimentParam):
 	print("----------------------------------- Lancement de la partie ------------------------------")
 	noeudSpatial = xParam
 	print("VALEUR DE test :", noeudSpatial)
-	testBatiment()
+	#testBatiment()
 	var ressourcesTour = jouerTour()
 	printEnsembleBatiment()
 	#printAllRessourcesFromTour()
 	return ressourcesTour
-	#removeBatiment(0,0)
 	
 #	
 func jouerTour():
@@ -61,11 +58,11 @@ func jouerTour():
 	return tableau
 
 
-func testBatiment():
-	var Cabane = CabaneClass.new()
-	matrix[0][0].setBatiment(Cabane)
-	matrix[0][1].setBatiment(UsineCharbonClass.new())
-	matrix[0][2].setBatiment(ScierieClass.new())
+#func testBatiment():
+#	var Cabane = CabaneClass.new()
+#	matrix[0][0].setBatiment(Cabane)
+#	matrix[0][1].setBatiment(UsineCharbonClass.new())
+#	matrix[0][2].setBatiment(ScierieClass.new())
 	
 func removeBatiment(x,y):
 	matrix[x][y].removeBatiment()
@@ -86,33 +83,18 @@ func checkTypeProduction():
 	if(retour.get_class()=="Bois"):
 		bois=retour.getQuantite()
 	retour=0
-	
-func updateGrid():
-	pass
-	
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		var from = get_viewport().get_camera().project_ray_origin(event.position)
-		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
-		var positionX = from.x - nor.x * (from.y/nor.y)
-		var positionZ = from.z - nor.z * (from.y/nor.y)
-		print("POSITION 3D: ", positionX, ": ", positionZ)
-		#var hit = space_state.intersect_ray(from,to)
-		creerBatiment(positionX,positionZ)
-		#print("Batiment placé")
-	pass
-	
 
-func creerBatiment(xCoor,zCoor):
-	
-	var memoireTest = load("res://Models/Terrain/Arbre.dae").instance()
-	memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
-	var NodeTest=self.get_parent_spatial()
-	print("VALEUR DANS CREATION BATIMENT", NodeTest)
-	NodeTest.add_child(memoireTest)
-	#var batiment_mesh=memoireBatiment.get_bake_mesh_instance(0)
-	#NodeTest.add_child(batiment_mesh)
-pass
+
+func ajoutBatimentMemoire(batimentType):
+	print("Ajout du batiment ", batimentType)
+	for x in range(matrix.size()):
+		for y in range(matrix.size()):
+			if(matrix[x][y].getConstructible()==true):
+				matrix[x][y].setBatiment(cabaneClass.new())
+				return
+	pass 
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

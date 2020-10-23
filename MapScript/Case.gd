@@ -24,7 +24,6 @@ func setConstructible(nouvelleVar):
 func setBatiment(batimentParam):
 	batiment= batimentParam
 	setConstructible(false)
-	print(getConstructible())
 	
 # Détruire un batiment
 func removeBatiment():
@@ -39,5 +38,4 @@ func getBatiment():
 # Joue le tour sur la case
 func jouer():
 	if(constructible==false):
-		print("Joue sa case:")
-		batiment.produit()
+		return batiment.produit()

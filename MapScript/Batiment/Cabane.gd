@@ -1,4 +1,5 @@
 extends Batiment
+var nourritureClass = load("res://Ressources/Nourriture.gd")
 
 
 # Declare member variables here. Examples:
@@ -11,8 +12,9 @@ func _ready():
 	pass # Replace with function body.
 
 func produit():
-	print("lancement production")
-	return 50
+	var nourriture = nourritureClass.new()
+	nourriture.setQuantite(50)
+	return nourriture
 
 func getBatiment():
 	return "Cabane"

@@ -13,7 +13,10 @@ func _ready():
 	ressourceDuTour= map.jouer(self, gridMap)
 	remplirStockage()
 	stockage.printReserve()
+<<<<<<< HEAD
 	print("ACHAT DE CABANE : ",peutAcheterBatiment("Cabane"))
+=======
+>>>>>>> origin/leoDev
 	pass # Replace with function body.
 
 
@@ -23,6 +26,7 @@ func remplirStockage():
 	stockage.ajouterNourriture(ressourceDuTour[2])
 	pass
 	
+<<<<<<< HEAD
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 	#AJOUTER LA CONDITION UI POUR RECUPERER LE BATIMENT
@@ -61,6 +65,8 @@ func peutAcheterBatiment(batiment):
 
 
 	
+=======
+>>>>>>> origin/leoDev
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

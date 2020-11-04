@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://MapScript/Batiment.gd"
 }, {
-"base": "Batiment",
-"class": "Cabane",
-"language": "GDScript",
-"path": "res://MapScript/Batiment/Cabane.gd"
-}, {
 "base": "Node",
 "class": "Case",
 "language": "GDScript",
@@ -26,7 +21,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Batiment": "",
-"Cabane": "",
 "Case": ""
 }
 

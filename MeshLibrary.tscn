@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Models/Cabane.obj" type="ArrayMesh" id=1]
+[ext_resource path="res://Models/Terrain/SolNeige.obj" type="ArrayMesh" id=2]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Cabane" type="MeshInstance" parent="."]
+mesh = ExtResource( 1 )
+material/0 = null
+material/1 = null
+
+[node name="SolNeige" type="MeshInstance" parent="."]
+mesh = ExtResource( 2 )
+material/0 = null

@@ -3,7 +3,7 @@ var mapClass = load("res://MapScript/Map.gd")
 var map = mapClass.new()
 var GridMapClass = load("res://MapScript/GridMap.gd")
 var gridMap = GridMapClass.new()
-var reserveClass = load("res://Reserve.gd")
+var reserveClass = load("res://Ressources/Reserve.gd")
 var stockage = reserveClass.new() 
 var ressourceDuTour 
 
@@ -14,8 +14,16 @@ func _ready():
 	remplirStockage()
 	stockage.printReserve()
 	print("ACHAT DE CABANE : ",peutAcheterBatiment("Cabane"))
+	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
+	for bouton in boutonConstruction:
+		bouton.connect("click",self,"testSignal")
+		print("DEBUG")
 	pass # Replace with function body.
 
+
+func testSignal():
+	print("signal reçu")
+	pass
 
 func remplirStockage():
 	stockage.ajouterBois(ressourceDuTour[0])
@@ -34,13 +42,13 @@ func _input(event):
 		creerBatiment(positionX,positionZ, typeBatiment)
 pass
 
+
 func creerBatiment(xCoor,zCoor, typeBatiment):
 	var memoireTest = load("res://Models/Cabane.dae").instance()
 	memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
 	self.add_child(memoireTest)
 	map.ajoutBatimentMemoire("cabane")
 pass
-
 
 
 func peutAcheterBatiment(batiment):

@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 var menuBatimentVisible = false
+var menuBatimentConstuction = false
 	
 func cancel_UI():
 	print("cancel")
@@ -30,3 +31,7 @@ func montrer_batimentSurvole(nom):
 func cacher_batimentSurvole():
 	$Survol.hide()
 	$Survol/Survol.text = ""
+	
+func montrer_menuConstruction():
+	$menuConstruction.show()
+	menuBatimentConstuction = true

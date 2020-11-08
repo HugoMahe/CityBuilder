@@ -8,6 +8,6 @@ func _ready():
 
 
 func _on_TextureButton_pressed():
-	print("J'ai cliqué")
+	print("Lancement du menu construction")
 	emit_signal("click")
 	pass # Replace with function body.

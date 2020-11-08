@@ -5,24 +5,28 @@ var GridMapClass = load("res://MapScript/GridMap.gd")
 var gridMap = GridMapClass.new()
 var reserveClass = load("res://Ressources/Reserve.gd")
 var stockage = reserveClass.new() 
-var ressourceDuTour 
+var ressourceDuTour
+var booleanConstruction =false
+var typeBatimentConstruction ="Vide"
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	map.genererGrid(5)
 	ressourceDuTour= map.jouer(self, gridMap)
-	remplirStockage()
-	stockage.printReserve()
-	print("ACHAT DE CABANE : ",peutAcheterBatiment("Cabane"))
+	
+	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
-		bouton.connect("click",self,"testSignal")
-		print("DEBUG")
-	pass # Replace with function body.
+		bouton.connect("click",self,"menuConstruction")
+	pass
 
 
-func testSignal():
-	print("signal reçu")
+func menuConstruction():
+	print("Ouverture du menu construction")
+	for child in self.get_children():
+		if(child.get_name()=="GUI"):
+			child.montrer_menuConstruction()
 	pass
 
 func remplirStockage():
@@ -31,16 +35,24 @@ func remplirStockage():
 	stockage.ajouterNourriture(ressourceDuTour[2])
 	pass
 	
+
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-	#AJOUTER LA CONDITION UI POUR RECUPERER LE BATIMENT
-		var typeBatiment = "Cabane"
 		var from = get_viewport().get_camera().project_ray_origin(event.position)
 		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
 		var positionX = from.x - nor.x * (from.y/nor.y)
 		var positionZ = from.z - nor.z * (from.y/nor.y)
-		creerBatiment(positionX,positionZ, typeBatiment)
+		if booleanConstruction==true:
+			creerBatiment(positionX,positionZ, typeBatimentConstruction)
 pass
+
+func setBooleanConstruction():
+	booleanConstruction = true
+	pass
+	
+func setTypeBatimentConstruction(parametre):
+	typeBatimentConstruction = parametre
+	pass
 
 
 func creerBatiment(xCoor,zCoor, typeBatiment):
@@ -66,10 +78,3 @@ func peutAcheterBatiment(batiment):
 				return true
 		return false
 		coutNouriture=200
-
-
-	
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

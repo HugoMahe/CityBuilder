@@ -37,7 +37,7 @@ func _ready():
 	
 	
 #	
-func jouer(xParam, memoireBatimentParam):
+func jouer(xParam):
 	print("----------------------------------- Lancement de la partie ------------------------------")
 	noeudSpatial = xParam
 	print("VALEUR DE test :", noeudSpatial)

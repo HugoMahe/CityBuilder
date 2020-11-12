@@ -8,6 +8,7 @@
 [ext_resource path="res://boutonConstructionCabane.gd" type="Script" id=7]
 [ext_resource path="res://GUI/ressource.gd" type="Script" id=8]
 [ext_resource path="res://Textures/menu/icon40.png" type="Texture" id=9]
+[ext_resource path="res://boutonConstructionRoute.gd" type="Script" id=10]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -176,7 +177,7 @@ __meta__ = {
 
 [node name="Nom" type="Label" parent="menuBatiment/VBoxContainer"]
 modulate = Color( 0, 0, 0, 1 )
-margin_right = 259.0
+margin_right = 258.0
 margin_bottom = 14.0
 text = "Nom"
 align = 1
@@ -184,7 +185,7 @@ uppercase = true
 
 [node name="Ressource" type="HBoxContainer" parent="menuBatiment/VBoxContainer"]
 margin_top = 18.0
-margin_right = 259.0
+margin_right = 258.0
 margin_bottom = 32.0
 
 [node name="Type" type="Label" parent="menuBatiment/VBoxContainer/Ressource"]
@@ -288,8 +289,10 @@ margin_bottom = 102.0
 "boutonConstructionRoute",
 ]]
 margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 9 )
+margin_bottom = 100.0
+texture_normal = ExtResource( 4 )
+expand = true
+script = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="menuConstruction/VBoxContainer/Container2"]
 margin_left = 44.0
@@ -380,3 +383,4 @@ __meta__ = {
 [connection signal="pressed" from="Batiments/HBoxContainer/Batiment1" to="Batiments/HBoxContainer/Batiment1" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="menuBatiment/Quitter" to="." method="cancel_UI"]
 [connection signal="pressed" from="menuConstruction/VBoxContainer/Container/TextureButton" to="menuConstruction/VBoxContainer/Container/TextureButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="menuConstruction/VBoxContainer/Container2/TextureButton" to="menuConstruction/VBoxContainer/Container2/TextureButton" method="_on_TextureButton_pressed"]

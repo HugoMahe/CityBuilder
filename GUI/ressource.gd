@@ -13,3 +13,7 @@ func updateRessource(stockage):
 	nourriture.text = "Nourriture : " + str(stockage.getNourriture())
 	bois.text = "Bois : " + str(stockage.getBois())
 	charbon.text = "Charbon : " + str(stockage.getCharbon())
+
+
+func _on_TextureButton_pressed():
+	pass # Replace with function body.

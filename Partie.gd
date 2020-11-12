@@ -19,6 +19,8 @@ func _ready():
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
 		bouton.connect("click",self,"menuConstruction")
+		
+	$GUI.updateRessource(stockage)
 	pass
 
 
@@ -33,19 +35,21 @@ func remplirStockage():
 	stockage.ajouterBois(ressourceDuTour[0])
 	stockage.ajouterCharbon(ressourceDuTour[1])
 	stockage.ajouterNourriture(ressourceDuTour[2])
+	$GUI.updateRessource(stockage)
 	pass
 	
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		$GUI.updateRessource(stockage)
 		var from = get_viewport().get_camera().project_ray_origin(event.position)
 		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
 		var positionX = from.x - nor.x * (from.y/nor.y)
 		var positionZ = from.z - nor.z * (from.y/nor.y)
 		if booleanConstruction==true:
 			creerBatiment(positionX,positionZ, typeBatimentConstruction)
-pass
+	
+	if event.is_action_pressed("ui_cancel"):
+		booleanConstruction = false
 
 func setBooleanConstruction():
 	booleanConstruction = true

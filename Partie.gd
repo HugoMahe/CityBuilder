@@ -2,7 +2,6 @@ extends Spatial
 var mapClass = load("res://MapScript/Map.gd")
 var map = mapClass.new()
 var GridMapClass = load("res://MapScript/GridMap.gd")
-var gridMap = GridMapClass.new()
 var reserveClass = load("res://Ressources/Reserve.gd")
 var stockage = reserveClass.new() 
 var ressourceDuTour
@@ -13,7 +12,7 @@ var typeBatimentConstruction ="Vide"
 
 func _ready():
 	map.genererGrid(5)
-	ressourceDuTour= map.jouer(self, gridMap)
+	ressourceDuTour= map.jouer(self)
 	
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
@@ -56,10 +55,19 @@ func setTypeBatimentConstruction(parametre):
 
 
 func creerBatiment(xCoor,zCoor, typeBatiment):
-	var memoireTest = load("res://Models/Cabane.dae").instance()
-	memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
+	var memoireTest
+	if typeBatiment == "Cabane":
+		memoireTest = load("res://Models/Cabane.dae").instance()
+		map.ajoutBatimentMemoire("cabane")
+		memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
+	elif typeBatiment=="Route":
+		memoireTest = load("res://Models/Route.dae").instance()
+		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
+		var memoireDeuxTest = load("res://Models/Route.dae").instance()
+		memoireDeuxTest.transform.origin =Vector3(xCoor,1,zCoor+1)
+		self.add_child(memoireDeuxTest)
 	self.add_child(memoireTest)
-	map.ajoutBatimentMemoire("cabane")
+	
 pass
 
 

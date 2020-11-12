@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Textures/menu/ice_menu.png" type="Texture" id=1]
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://buttonCabane.gd" type="Script" id=5]
 [ext_resource path="res://Textures/testTextureFond.png" type="Texture" id=6]
 [ext_resource path="res://boutonConstructionCabane.gd" type="Script" id=7]
+[ext_resource path="res://boutonConstructionRoute.gd" type="Script" id=8]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -321,6 +322,7 @@ margin_right = 40.0
 margin_bottom = 100.0
 texture_normal = ExtResource( 4 )
 expand = true
+script = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="menuConstruction/VBoxContainer/Container2"]
 margin_left = 54.814
@@ -331,3 +333,4 @@ text = "Route"
 [connection signal="pressed" from="Batiments/HBoxContainer/batiment1/TextureButton" to="Batiments/HBoxContainer/batiment1/TextureButton" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="menuBatiment/Quitter" to="." method="cancel_UI"]
 [connection signal="pressed" from="menuConstruction/VBoxContainer/Container/TextureButton" to="menuConstruction/VBoxContainer/Container/TextureButton" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="menuConstruction/VBoxContainer/Container2/TextureButton" to="menuConstruction/VBoxContainer/Container2/TextureButton" method="_on_TextureButton_pressed"]

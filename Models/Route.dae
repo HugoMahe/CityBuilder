@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.90.1 commit date:2020-09-23, commit time:06:43, hash:3e85bb34d0d7</authoring_tool>
+    </contributor>
+    <created>2020-11-12T16:27:59</created>
+    <modified>2020-11-12T16:27:59</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="GlaceSombre-effect">
+      <profile_COMMON>
+        <newparam sid="Blue_Ice_001_COLOR_jpg-surface">
+          <surface type="2D">
+            <init_from>Blue_Ice_001_COLOR_jpg</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="Blue_Ice_001_COLOR_jpg-sampler">
+          <sampler2D>
+            <source>Blue_Ice_001_COLOR_jpg-surface</source>
+          </sampler2D>
+        </newparam>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <texture texture="Blue_Ice_001_COLOR_jpg-sampler" texcoord="UVMap"/>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+    <effect id="Route-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0.007091145 7.4954e-4 0.009986726 1</color>
+            </diffuse>
+            <index_of_refraction>
+              <float sid="ior">1.45</float>
+            </index_of_refraction>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images>
+    <image id="Blue_Ice_001_COLOR_jpg" name="Blue_Ice_001_COLOR_jpg">
+      <init_from>Blue_Ice_001_COLOR.jpg</init_from>
+    </image>
+  </library_images>
+  <library_materials>
+    <material id="GlaceSombre-material" name="GlaceSombre">
+      <instance_effect url="#GlaceSombre-effect"/>
+    </material>
+    <material id="Route-material" name="Route">
+      <instance_effect url="#Route-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="Cube_001-mesh" name="Cube.001">
+      <mesh>
+        <source id="Cube_001-mesh-positions">
+          <float_array id="Cube_001-mesh-positions-array" count="48">-0.9147108 -0.9275496 -0.01711392 -0.9147108 -0.9275496 0.01711392 -0.9147108 0.9275496 -0.01711392 -0.9147108 0.9275496 0.01711392 0.9147108 -0.9275496 -0.01711392 0.9147108 -0.9275496 0.01711392 0.9147108 0.9275496 -0.01711392 0.9147108 0.9275496 0.01711392 -0.6193162 0.9275496 -0.01711392 0.6193163 0.9275496 -0.01711392 0.6193163 0.9275496 0.01711392 -0.6193162 0.9275496 0.01711392 0.6193163 -0.9275496 -0.01711392 -0.6193162 -0.9275496 -0.01711392 -0.6193162 -0.9275496 0.01711392 0.6193163 -0.9275496 0.01711392</float_array>
+          <technique_common>
+            <accessor source="#Cube_001-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_001-mesh-normals">
+          <float_array id="Cube_001-mesh-normals-array" count="18">-1 0 0 0 0 1 1 0 0 0 0 -1 0 -1 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#Cube_001-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Cube_001-mesh-map-0">
+          <float_array id="Cube_001-mesh-map-0-array" count="168">0.625 0 0.375 0.25 0.375 0 0.6653672 0.5 0.625 0.75 0.625 0.5 0.625 0.5 0.375 0.75 0.375 0.5 0.1653671 0.5 0.125 0.75 0.125 0.5 0.625 0.75 0.375 0.7903672 0.375 0.75 0.875 0.5 0.8346328 0.75 0.8346328 0.5 0.625 0.4596328 0.375 0.5 0.375 0.4596328 0.625 0.9596328 0.375 1 0.375 0.9596328 0.375 0.5 0.3346328 0.75 0.3346328 0.5 0.8346328 0.75 0.6653672 0.5 0.8346328 0.5 0.3346328 0.75 0.1653671 0.5 0.3346328 0.5 0.375 0.9596328 0.625 0.7903672 0.625 0.9596328 0.375 0.4596328 0.625 0.2903672 0.625 0.4596328 0.625 0.25 0.375 0.2903672 0.375 0.25 0.625 0 0.625 0.25 0.375 0.25 0.6653672 0.5 0.6653672 0.75 0.625 0.75 0.625 0.5 0.625 0.75 0.375 0.75 0.1653671 0.5 0.1653671 0.75 0.125 0.75 0.625 0.75 0.625 0.7903672 0.375 0.7903672 0.875 0.5 0.875 0.75 0.8346328 0.75 0.625 0.4596328 0.625 0.5 0.375 0.5 0.625 0.9596328 0.625 1 0.375 1 0.375 0.5 0.375 0.75 0.3346328 0.75 0.8346328 0.75 0.6653672 0.75 0.6653672 0.5 0.3346328 0.75 0.1653671 0.75 0.1653671 0.5 0.375 0.9596328 0.375 0.7903672 0.625 0.7903672 0.375 0.4596328 0.375 0.2903672 0.625 0.2903672 0.625 0.25 0.625 0.2903672 0.375 0.2903672</float_array>
+          <technique_common>
+            <accessor source="#Cube_001-mesh-map-0-array" count="84" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Cube_001-mesh-vertices">
+          <input semantic="POSITION" source="#Cube_001-mesh-positions"/>
+        </vertices>
+        <triangles material="GlaceSombre-material" count="26">
+          <input semantic="VERTEX" source="#Cube_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_001-mesh-map-0" offset="2" set="0"/>
+          <p>1 0 0 2 0 1 0 0 2 10 1 3 5 1 4 7 1 5 7 2 6 4 2 7 6 2 8 8 3 9 0 3 10 2 3 11 5 4 12 12 4 13 4 4 14 3 1 15 14 1 16 11 1 17 10 5 18 6 5 19 9 5 20 14 4 21 0 4 22 13 4 23 6 3 24 12 3 25 9 3 26 12 3 30 8 3 31 9 3 32 13 4 33 15 4 34 14 4 35 9 5 36 11 5 37 10 5 38 3 5 39 8 5 40 2 5 41 1 0 42 3 0 43 2 0 44 10 1 45 15 1 46 5 1 47 7 2 48 5 2 49 4 2 50 8 3 51 13 3 52 0 3 53 5 4 54 15 4 55 12 4 56 3 1 57 1 1 58 14 1 59 10 5 60 7 5 61 6 5 62 14 4 63 1 4 64 0 4 65 6 3 66 4 3 67 12 3 68 12 3 72 13 3 73 8 3 74 13 4 75 12 4 76 15 4 77 9 5 78 8 5 79 11 5 80 3 5 81 11 5 82 8 5 83</p>
+        </triangles>
+        <triangles material="Route-material" count="2">
+          <input semantic="VERTEX" source="#Cube_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Cube_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Cube_001-mesh-map-0" offset="2" set="0"/>
+          <p>14 1 27 10 1 28 11 1 29 14 1 69 15 1 70 10 1 71</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Cube" name="Cube" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Cube_001-mesh" name="Cube">
+          <bind_material>
+            <technique_common>
+              <instance_material symbol="GlaceSombre-material" target="#GlaceSombre-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+              <instance_material symbol="Route-material" target="#Route-material">
+                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+              </instance_material>
+            </technique_common>
+          </bind_material>
+        </instance_geometry>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

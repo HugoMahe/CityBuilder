@@ -38,6 +38,7 @@ func remplirStockage():
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		$GUI.updateRessource(stockage)
 		var from = get_viewport().get_camera().project_ray_origin(event.position)
 		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
 		var positionX = from.x - nor.x * (from.y/nor.y)

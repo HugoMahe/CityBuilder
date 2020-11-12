@@ -8,6 +8,8 @@
 [ext_resource path="res://Textures/testTextureFond.png" type="Texture" id=6]
 [ext_resource path="res://boutonConstructionCabane.gd" type="Script" id=7]
 [ext_resource path="res://boutonConstructionRoute.gd" type="Script" id=8]
+[ext_resource path="res://GUI/ressource.gd" type="Script" id=8]
+[ext_resource path="res://Textures/menu/icon40.png" type="Texture" id=9]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -93,81 +95,45 @@ anchor_left = 0.371
 anchor_top = 0.41
 anchor_right = 0.629
 anchor_bottom = 0.892
-margin_left = 0.0960083
 margin_top = -0.0300026
-margin_right = -0.0960083
 margin_bottom = -0.0360031
-custom_constants/separation = 56
+custom_constants/separation = 20
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="batiment1" type="Container" parent="Batiments/HBoxContainer"]
-margin_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="Batiments/HBoxContainer/batiment1" groups=[
+[node name="Batiment1" type="TextureButton" parent="Batiments/HBoxContainer" groups=[
 "boutonConstruction",
 ]]
-margin_right = 40.0
+margin_left = 52.0
+margin_right = 92.0
 margin_bottom = 40.0
-texture_normal = ExtResource( 4 )
-expand = true
+texture_normal = ExtResource( 9 )
 script = ExtResource( 5 )
 
-[node name="batiment2" type="Container" parent="Batiments/HBoxContainer"]
-margin_left = 56.0
-margin_right = 56.0
-margin_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="Batiments/HBoxContainer/batiment2"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 4 )
-expand = true
-
-[node name="batiment3" type="Container" parent="Batiments/HBoxContainer"]
+[node name="Batiment2" type="TextureButton" parent="Batiments/HBoxContainer"]
 margin_left = 112.0
-margin_right = 112.0
+margin_right = 152.0
 margin_bottom = 40.0
+texture_normal = ExtResource( 9 )
 
-[node name="TextureButton" type="TextureButton" parent="Batiments/HBoxContainer/batiment3"]
-margin_right = 40.0
+[node name="Batiment3" type="TextureButton" parent="Batiments/HBoxContainer"]
+margin_left = 172.0
+margin_right = 212.0
 margin_bottom = 40.0
-texture_normal = ExtResource( 4 )
-expand = true
-
-[node name="batiment4" type="Container" parent="Batiments/HBoxContainer"]
-margin_left = 168.0
-margin_right = 168.0
-margin_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="Batiments/HBoxContainer/batiment4"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 4 )
-expand = true
-
-[node name="batiment5" type="Container" parent="Batiments/HBoxContainer"]
-margin_left = 224.0
-margin_right = 224.0
-margin_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="Batiments/HBoxContainer/batiment5"]
-margin_right = 40.0
-margin_bottom = 40.0
-texture_normal = ExtResource( 4 )
-expand = true
+texture_normal = ExtResource( 9 )
 
 [node name="menuBatiment" type="Control" parent="."]
 visible = false
 anchor_left = 0.635
 anchor_top = 0.083
 anchor_right = 0.927
-anchor_bottom = 0.917
-margin_left = -0.240051
-margin_top = 0.199997
+anchor_bottom = 0.793
+margin_left = -0.23999
+margin_top = 0.200001
 margin_right = -0.248047
-margin_bottom = -0.200012
+margin_bottom = 0.199982
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -330,7 +296,85 @@ margin_top = 70.0
 margin_right = 94.814
 margin_bottom = 84.0
 text = "Route"
-[connection signal="pressed" from="Batiments/HBoxContainer/batiment1/TextureButton" to="Batiments/HBoxContainer/batiment1/TextureButton" method="_on_TextureButton_pressed"]
+
+[node name="ressource" type="Control" parent="."]
+anchor_right = 0.313
+anchor_bottom = 0.103
+margin_right = 0.487976
+margin_bottom = 0.199997
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="textureMenu" type="NinePatchRect" parent="ressource"]
+anchor_right = 1.265
+anchor_bottom = 0.871
+margin_left = -100.0
+margin_top = -114.0
+margin_right = -0.0650024
+margin_bottom = -0.0019989
+texture = ExtResource( 1 )
+patch_margin_left = 33
+patch_margin_top = 33
+patch_margin_right = 33
+patch_margin_bottom = 33
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ressource"]
+anchor_left = 0.037
+anchor_top = 0.194
+anchor_right = 1.187
+anchor_bottom = 0.548
+margin_left = 0.123001
+margin_top = -0.0279999
+margin_right = 0.973022
+grow_horizontal = 0
+grow_vertical = 0
+custom_constants/separation = 20
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nourriture" type="Label" parent="ressource/HBoxContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 8.0
+margin_top = 3.0
+margin_right = 136.0
+margin_bottom = 17.0
+text = "Nourriture : 0000"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bois" type="Label" parent="ressource/HBoxContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 156.0
+margin_top = 3.0
+margin_right = 232.0
+margin_bottom = 17.0
+text = "Bois : 0000"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Charbon" type="Label" parent="ressource/HBoxContainer"]
+modulate = Color( 0, 0, 0, 1 )
+margin_left = 252.0
+margin_top = 3.0
+margin_right = 361.0
+margin_bottom = 17.0
+text = "Charbon : 0000"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="Batiments/HBoxContainer/Batiment1" to="Batiments/HBoxContainer/Batiment1" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="menuBatiment/Quitter" to="." method="cancel_UI"]
 [connection signal="pressed" from="menuConstruction/VBoxContainer/Container/TextureButton" to="menuConstruction/VBoxContainer/Container/TextureButton" method="_on_TextureButton_pressed"]
 [connection signal="pressed" from="menuConstruction/VBoxContainer/Container2/TextureButton" to="menuConstruction/VBoxContainer/Container2/TextureButton" method="_on_TextureButton_pressed"]

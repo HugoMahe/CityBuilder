@@ -35,3 +35,6 @@ func cacher_batimentSurvole():
 func montrer_menuConstruction():
 	$menuConstruction.show()
 	menuBatimentConstuction = true
+	
+func updateRessource(stockage):
+	$ressource.updateRessource(stockage)

@@ -15,6 +15,7 @@ var typeBatimentConstruction ="Vide"
 var positionDebutRoute
 var positionDebutRoute3D
 var mapCaseGraphique
+var booleanPositionDebut = false
 
 
 
@@ -23,7 +24,7 @@ func _ready():
 	ressourceDuTour= map.jouer(self)
 	var nodeOriginGrid = get_node("OriginGrid")
 	var nodeEndGrid = get_node("FinGrid")
-	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(nodeOriginGrid,nodeEndGrid)
+	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(nodeOriginGrid,nodeEndGrid,self)
 	mapGraphiqueClass.trouverVoisin()
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
@@ -59,10 +60,20 @@ func _input(event):
 		if booleanConstruction==true:
 			creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
 			return
-		if positionDebutRoute:
+		if booleanRoute==true and booleanPositionDebut==false:
+			route.setPlacementBoolean(true)
+			route.setCaseDebutRoute(caseSelection)
+			booleanPositionDebut=true
+			return
+		if booleanRoute==true and booleanPositionDebut==true:
+			route.setCaseFinRoute(caseSelection)
+			booleanRoute=false
+			booleanPositionDebut=false
+			if positionDebutRoute:
 				print("Set du fin")
 				print("POSITION DEBUT ROUTE",positionDebutRoute)
-				#var angle = route.setRoute(positionDebutRoute, event.position)
+				route.setPlacementBoolean(true)
+				route.setCaseDebut()
 				creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
 				positionDebutRoute=0
 				booleanRoute=false
@@ -91,14 +102,10 @@ func setBooleanRoute():
 
 func creerBatiment(xCoor,zCoor, typeBatiment, angle):
 	var memoireTest
-	print("BATIMENt",typeBatiment)
+	print("BATIMENT",typeBatiment)
 	if typeBatiment == "Cabane":
 		memoireTest = load("res://Models/Cabane.dae").instance()
 		map.ajoutBatimentMemoire("cabane")
-		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
-		self.add_child(memoireTest)
-	elif typeBatiment == "Route":
-		memoireTest = load("res://Models/Route.dae").instance()
 		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)
 pass

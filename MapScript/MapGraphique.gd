@@ -4,52 +4,14 @@ var spacingX=3
 var spacingZ=3
 var matrixCaseGraphique = []
 var mapCase = {}
+var spatial
 
 
 var caseGraphiqueClass = load("res://MapScript/CaseGraphique.gd")
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
-
-func generateGraphicalGrid(nodeOriginGridParam, nodeEndGridParam):
-	print("LANCEMENT GENERATION GRAPHIQUE")
-	print(nodeOriginGridParam.translation[0])
-	print(nodeEndGridParam.translation[0])
-	var  xOrigin = nodeOriginGridParam.translation[0]
-	var zOrigin = nodeOriginGridParam.translation[2]
-	var xFin = nodeEndGridParam.translation[0]
-	var zFin = nodeEndGridParam.translation[2]
-	print("XDEBUT" , xOrigin)
-	print("XFIN",xFin)
-	print("ZDEBUT" , zOrigin)
-	print("ZFIN",zFin)
-	var x = 0
-	var y = 0
-	while( xOrigin < xFin):
-		matrixCaseGraphique.append([])
-		matrixCaseGraphique[x]=[]
-		while(zOrigin <= zFin):
-			#CREATION DE LA CASE GRAPHIQUE
-			matrixCaseGraphique[x].append([])
-			matrixCaseGraphique[x][y]=caseGraphiqueClass.new()
-			matrixCaseGraphique[x][y].setCaseTopLeft(xOrigin,zOrigin,spacingX,spacingZ, nodeOriginGridParam.get_parent())
-			zOrigin=zOrigin +spacingZ
-			y = y+1
-		zOrigin = nodeOriginGridParam.translation[2]
-		xOrigin= xOrigin + spacingX
-		x = x +1
-		y=0
-	return matrixCaseGraphique
-	pass
-
 
 func getClosestCase(xCoor,zCoor):
 	for x in range(matrixCaseGraphique.size()):
@@ -60,7 +22,8 @@ func getClosestCase(xCoor,zCoor):
 	pass 
 
 
-func generateGraphicalGridMap(nodeOriginGridParam, nodeEndGridParam):
+func generateGraphicalGridMap(nodeOriginGridParam, nodeEndGridParam,spatialParam):
+	spatial = spatialParam
 	var  xOrigin = nodeOriginGridParam.translation[0]
 	var zOrigin = nodeOriginGridParam.translation[2]
 	var xFin = nodeEndGridParam.translation[0]

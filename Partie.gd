@@ -3,17 +3,28 @@ var mapClass = load("res://MapScript/Map.gd")
 var map = mapClass.new()
 var GridMapClass = load("res://MapScript/GridMap.gd")
 var reserveClass = load("res://Ressources/Reserve.gd")
+var routeClass = load("res://chemin/chemin.gd")
+var mapGraphique = load("res://MapScript/MapGraphique.gd")
+var mapGraphiqueClass = mapGraphique.new()
+var route = routeClass.new()
 var stockage = reserveClass.new() 
 var ressourceDuTour
 var booleanConstruction =false
+var booleanRoute = false
 var typeBatimentConstruction ="Vide"
+var positionDebutRoute
+var positionDebutRoute3D
+var mapCaseGraphique
 
 
 
 func _ready():
 	map.genererGrid(5)
 	ressourceDuTour= map.jouer(self)
-	
+	var nodeOriginGrid = get_node("OriginGrid")
+	var nodeEndGrid = get_node("FinGrid")
+	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(nodeOriginGrid,nodeEndGrid)
+	mapGraphiqueClass.trouverVoisin()
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
@@ -44,8 +55,23 @@ func _input(event):
 		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
 		var positionX = from.x - nor.x * (from.y/nor.y)
 		var positionZ = from.z - nor.z * (from.y/nor.y)
+		var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
 		if booleanConstruction==true:
-			creerBatiment(positionX,positionZ, typeBatimentConstruction)
+			creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
+			return
+		if positionDebutRoute:
+				print("Set du fin")
+				print("POSITION DEBUT ROUTE",positionDebutRoute)
+				#var angle = route.setRoute(positionDebutRoute, event.position)
+				creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
+				positionDebutRoute=0
+				booleanRoute=false
+				return
+		if booleanRoute==true:
+			print("Set du debut")
+			positionDebutRoute=event.position
+			positionDebutRoute3D=[positionX,positionZ]
+			
 	
 	if event.is_action_pressed("ui_cancel"):
 		booleanConstruction = false
@@ -57,22 +83,24 @@ func setBooleanConstruction():
 func setTypeBatimentConstruction(parametre):
 	typeBatimentConstruction = parametre
 	pass
+	
+func setBooleanRoute():
+	booleanRoute = true
+	pass
 
 
-func creerBatiment(xCoor,zCoor, typeBatiment):
+func creerBatiment(xCoor,zCoor, typeBatiment, angle):
 	var memoireTest
+	print("BATIMENt",typeBatiment)
 	if typeBatiment == "Cabane":
 		memoireTest = load("res://Models/Cabane.dae").instance()
 		map.ajoutBatimentMemoire("cabane")
-		memoireTest.transform.origin =Vector3(xCoor,0,zCoor)
-	elif typeBatiment=="Route":
+		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
+		self.add_child(memoireTest)
+	elif typeBatiment == "Route":
 		memoireTest = load("res://Models/Route.dae").instance()
 		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
-		var memoireDeuxTest = load("res://Models/Route.dae").instance()
-		memoireDeuxTest.transform.origin =Vector3(xCoor,1,zCoor+1)
-		self.add_child(memoireDeuxTest)
-	self.add_child(memoireTest)
-	
+		self.add_child(memoireTest)
 pass
 
 

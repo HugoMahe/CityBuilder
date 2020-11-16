@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Textures/menu/ice_menu.png" type="Texture" id=1]
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=2]
@@ -244,7 +244,7 @@ anchor_left = 0.069
 anchor_top = 0.085
 anchor_right = 0.934
 anchor_bottom = 0.922
-margin_left = 7.0
+margin_left = 9.0
 margin_top = 7.0
 margin_right = -7.0
 margin_bottom = 7.0
@@ -253,7 +253,7 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="menuConstruction/VBoxContainer"]
-margin_right = 235.0
+margin_right = 233.0
 margin_bottom = 14.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BATIMENTS DISPONIBLES"
@@ -261,7 +261,7 @@ align = 1
 
 [node name="Container" type="HBoxContainer" parent="menuConstruction/VBoxContainer"]
 margin_top = 18.0
-margin_right = 235.0
+margin_right = 233.0
 margin_bottom = 58.0
 
 [node name="TextureButton" type="TextureButton" parent="menuConstruction/VBoxContainer/Container" groups=[
@@ -282,14 +282,15 @@ text = "Cabane"
 
 [node name="Container2" type="HBoxContainer" parent="menuConstruction/VBoxContainer"]
 margin_top = 62.0
-margin_right = 235.0
+margin_right = 233.0
 margin_bottom = 102.0
 
 [node name="TextureButton" type="TextureButton" parent="menuConstruction/VBoxContainer/Container2" groups=[
 "boutonConstructionRoute",
 ]]
 margin_right = 40.0
-margin_bottom = 100.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
 texture_normal = ExtResource( 4 )
 expand = true
 script = ExtResource( 10 )

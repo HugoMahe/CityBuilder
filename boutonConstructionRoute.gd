@@ -18,6 +18,6 @@ func _ready():
 
 func _on_TextureButton_pressed():
 	print("Construction de la route possible")
-	self.get_parent().get_parent().get_parent().get_parent().get_parent().setBooleanConstruction()
+	self.get_parent().get_parent().get_parent().get_parent().get_parent().setBooleanRoute()
 	self.get_parent().get_parent().get_parent().get_parent().get_parent().setTypeBatimentConstruction("Route")
 	pass

@@ -30,7 +30,6 @@ func removeBatiment():
 # Recuperation du batiment
 func getBatiment():
 	return batiment
-	
 
 # Joue le tour sur la case
 func jouer():

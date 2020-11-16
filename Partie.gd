@@ -15,6 +15,7 @@ var typeBatimentConstruction ="Vide"
 var positionDebutRoute
 var positionDebutRoute3D
 var mapCaseGraphique
+var inMenuPrincipal = false
 
 
 
@@ -50,31 +51,35 @@ func remplirStockage():
 	
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		var from = get_viewport().get_camera().project_ray_origin(event.position)
-		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
-		var positionX = from.x - nor.x * (from.y/nor.y)
-		var positionZ = from.z - nor.z * (from.y/nor.y)
-		var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
-		if booleanConstruction==true:
-			creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
-			return
-		if positionDebutRoute:
-				print("Set du fin")
-				print("POSITION DEBUT ROUTE",positionDebutRoute)
-				#var angle = route.setRoute(positionDebutRoute, event.position)
+	if !inMenuPrincipal:
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+			var from = get_viewport().get_camera().project_ray_origin(event.position)
+			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
+			var positionX = from.x - nor.x * (from.y/nor.y)
+			var positionZ = from.z - nor.z * (from.y/nor.y)
+			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
+			if booleanConstruction==true:
 				creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
-				positionDebutRoute=0
-				booleanRoute=false
 				return
-		if booleanRoute==true:
-			print("Set du debut")
-			positionDebutRoute=event.position
-			positionDebutRoute3D=[positionX,positionZ]
+			if positionDebutRoute:
+					print("Set du fin")
+					print("POSITION DEBUT ROUTE",positionDebutRoute)
+					#var angle = route.setRoute(positionDebutRoute, event.position)
+					creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
+					positionDebutRoute=0
+					booleanRoute=false
+					return
+			if booleanRoute==true:
+				print("Set du debut")
+				positionDebutRoute=event.position
+				positionDebutRoute3D=[positionX,positionZ]
 			
 	
 	if event.is_action_pressed("ui_cancel"):
-		booleanConstruction = false
+		if booleanConstruction:
+			booleanConstruction = false
+		else:
+			$GUI.cancel_menu()
 
 func setBooleanConstruction():
 	booleanConstruction = true
@@ -119,3 +124,10 @@ func peutAcheterBatiment(batiment):
 				return true
 		return false
 		coutNouriture=200
+
+func quitter_jeu():
+	get_tree().quit()
+
+func set_inMenuPrincipal(boolean):
+	inMenuPrincipal = boolean
+	$Spatial.set_bloque(boolean)

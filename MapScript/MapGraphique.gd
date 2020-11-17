@@ -1,7 +1,7 @@
 extends Node
 
-var spacingX=3
-var spacingZ=3
+var spacingX=6
+var spacingZ=6
 var matrixCaseGraphique = []
 var mapCase = {}
 var spatial
@@ -40,6 +40,7 @@ func generateGraphicalGridMap(nodeOriginGridParam, nodeEndGridParam,spatialParam
 			var formatageCle = str(str(xOrigin)  + ":" + str(temporigin) +";" + str(zOrigin) +":" + str(temporigin2))
 			mapCase[formatageCle] = caseGraphiqueClass.new()
 			mapCase[formatageCle].setCaseTopLeft(xOrigin,zOrigin,spacingX,spacingZ, nodeOriginGridParam.get_parent())
+			mapCase[formatageCle].generateModel()
 			zOrigin=zOrigin +spacingZ
 			y = y+1
 		zOrigin = nodeOriginGridParam.translation[2]

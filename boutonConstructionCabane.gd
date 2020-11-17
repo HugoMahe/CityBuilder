@@ -19,6 +19,6 @@ func _ready():
 
 func _on_TextureButton_pressed():
 	print("Construction de la cabane possible")
-	self.get_parent().get_parent().get_parent().get_parent().get_parent().setBooleanConstruction()
-	self.get_parent().get_parent().get_parent().get_parent().get_parent().setTypeBatimentConstruction("Cabane")
+	get_node("/root/Map").setBooleanConstruction()
+	get_node("/root/Map").setTypeBatimentConstruction("Cabane")
 	pass # Replace with function body.

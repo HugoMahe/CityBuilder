@@ -61,4 +61,11 @@ func ajouterBatiment(typeBatiment,angle):
 			batiment.rotate_y(deg2rad(angle))
 		print(spatial)
 		spatial.add_child(batiment)
-	pass 
+pass 
+
+
+func generateModel():
+	var maCaseModel = load("res://Models/CaseGraphHerbe.dae").instance()
+	maCaseModel.transform.origin = Vector3(centerX,1,centerZ)
+	spatial.add_child(maCaseModel)
+pass

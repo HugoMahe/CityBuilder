@@ -2,6 +2,7 @@ extends CanvasLayer
 
 var menuBatimentVisible = false
 var menuBatimentConstuction = false
+var menuPrincipal = false
 	
 func cancel_UI():
 	print("cancel")
@@ -36,5 +37,36 @@ func montrer_menuConstruction():
 	$menuConstruction.show()
 	menuBatimentConstuction = true
 	
+func cacher_menuConstruction():
+	$menuConstruction.hide()
+	menuBatimentConstuction = false
+	
 func updateRessource(stockage):
 	$ressource.updateRessource(stockage)
+	
+func montrer_menuPrincipal():
+	$Batiments.hide()
+	$ressource.hide()
+	$menuPrincipal.show()
+	get_node("/root/Map").set_inMenuPrincipal(true)
+	menuPrincipal = true
+	
+func cacher_menuPrincipal():
+	$Batiments.show()
+	$ressource.show()
+	$menuPrincipal.hide()
+	get_node("/root/Map").set_inMenuPrincipal(false)
+	menuPrincipal = false
+
+func cancel_menu():
+	if menuBatimentVisible:
+		cacher_menuBatiment()
+	elif menuBatimentConstuction:
+		cacher_menuConstruction()
+	elif !menuPrincipal:
+		montrer_menuPrincipal()
+	elif menuPrincipal:
+		cacher_menuPrincipal()
+
+func _on_quitter_jeu_pressed():
+	get_node("/root/Map").quitter_jeu();

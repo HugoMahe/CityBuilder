@@ -16,16 +16,21 @@ var positionDebutRoute
 var positionDebutRoute3D
 var mapCaseGraphique
 var booleanPositionDebut = false
-
-
+var inMenuPrincipal = false
+var pointeur
 
 func _ready():
+	#GENERATION DE LA MAP
 	map.genererGrid(5)
 	ressourceDuTour= map.jouer(self)
 	var nodeOriginGrid = get_node("OriginGrid")
 	var nodeEndGrid = get_node("FinGrid")
 	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(nodeOriginGrid,nodeEndGrid,self)
 	mapGraphiqueClass.trouverVoisin()
+	#DEFINITION DU POINTEUR DE CASE
+	pointeur = load("res://Models/Pointeur.dae").instance()
+	pointeur.transform.origin =Vector3(0,1,0)
+	self.add_child(pointeur)
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
@@ -51,41 +56,45 @@ func remplirStockage():
 	
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		var from = get_viewport().get_camera().project_ray_origin(event.position)
-		var nor =  get_viewport().get_camera().project_ray_normal(event.position)
-		var positionX = from.x - nor.x * (from.y/nor.y)
-		var positionZ = from.z - nor.z * (from.y/nor.y)
-		var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
-		if booleanConstruction==true:
-			creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
-			return
-		if booleanRoute==true and booleanPositionDebut==false:
-			route.setPlacementBoolean(true)
-			route.setCaseDebutRoute(caseSelection)
-			booleanPositionDebut=true
-			return
-		if booleanRoute==true and booleanPositionDebut==true:
-			route.setCaseFinRoute(caseSelection)
-			booleanRoute=false
-			booleanPositionDebut=false
-			if positionDebutRoute:
-				print("Set du fin")
-				print("POSITION DEBUT ROUTE",positionDebutRoute)
-				route.setPlacementBoolean(true)
-				route.setCaseDebut()
+	if !inMenuPrincipal:
+		if event is InputEventMouseMotion:
+			var from = get_viewport().get_camera().project_ray_origin(event.position)
+			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
+			var positionX = from.x - nor.x * (from.y/nor.y)
+			var positionZ = from.z - nor.z * (from.y/nor.y)
+			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
+			if(caseSelection):			
+				pointeur.transform.origin =Vector3(caseSelection.centerX,1,caseSelection.centerZ)
+		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+			var from = get_viewport().get_camera().project_ray_origin(event.position)
+			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
+			var positionX = from.x - nor.x * (from.y/nor.y)
+			var positionZ = from.z - nor.z * (from.y/nor.y)
+			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
+			if booleanConstruction==true:
 				creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
-				positionDebutRoute=0
-				booleanRoute=false
 				return
-		if booleanRoute==true:
-			print("Set du debut")
-			positionDebutRoute=event.position
-			positionDebutRoute3D=[positionX,positionZ]
+			if booleanRoute==true and booleanPositionDebut==false:
+				route.setPlacementBoolean(true)
+				route.setCaseDebutRoute(caseSelection)
+				booleanPositionDebut=true
+				return
+			if booleanRoute==true and booleanPositionDebut==true:
+				route.setCaseFinRoute(caseSelection)
+				booleanRoute=false
+				booleanPositionDebut=false
+				if positionDebutRoute:
+					print("Set du fin")
+					print("POSITION DEBUT ROUTE",positionDebutRoute)
+					route.setPlacementBoolean(true)
+					route.setCaseDebut()
 			
 	
 	if event.is_action_pressed("ui_cancel"):
-		booleanConstruction = false
+		if booleanConstruction:
+			booleanConstruction = false
+		else:
+			$GUI.cancel_menu()
 
 func setBooleanConstruction():
 	booleanConstruction = true
@@ -126,3 +135,10 @@ func peutAcheterBatiment(batiment):
 				return true
 		return false
 		coutNouriture=200
+
+func quitter_jeu():
+	get_tree().quit()
+
+func set_inMenuPrincipal(boolean):
+	inMenuPrincipal = boolean
+	$Spatial.set_bloque(boolean)

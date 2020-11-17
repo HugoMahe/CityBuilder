@@ -46,6 +46,8 @@ func setCaseFinRoute(caseFinParam):
 				caseCourante.ajouterBatiment("Route",0)
 				caseCourante = caseCourante.caseVoisinHaut
 				evolution = evolution - caseDebut.spacingZ
+			caseFin.ajouterBatiment("Route",0)
+
 		else:
 			var evolution = caseDebut.centerZ
 			var caseCourante = caseDebut
@@ -53,6 +55,8 @@ func setCaseFinRoute(caseFinParam):
 				caseCourante.ajouterBatiment("Route",0)
 				caseCourante = caseCourante.caseVoisinBas
 				evolution = evolution + caseDebut.spacingZ
+			caseFin.ajouterBatiment("Route",0)
+
 	elif(caseDebut.centerZ==caseFin.centerZ):
 		var evolution = caseDebut.centerX
 		var caseCourante = caseDebut
@@ -61,11 +65,13 @@ func setCaseFinRoute(caseFinParam):
 				caseCourante.ajouterBatiment("Route",90)
 				caseCourante = caseCourante.caseVoisinDroite
 				evolution = evolution + caseDebut.spacingX
+			caseFin.ajouterBatiment("Route",90)
 		else:
 			while(evolution > caseFin.centerX ):
 				caseCourante.ajouterBatiment("Route",90)
 				caseCourante = caseCourante.caseVoisinGauche
 				evolution = evolution - caseDebut.spacingX
+			caseFin.ajouterBatiment("Route",90)
 	else:
 		print("la route n'est pas droite"); 
 	pass

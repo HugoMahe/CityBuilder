@@ -25,6 +25,8 @@ var spacingX
 var booleanRoute=false
 
 
+var typeRouteModel
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -53,14 +55,19 @@ func trouverVoisinCase(var mapParam,spacingXParam,spacingZParam):
 	pass
 
 func ajouterBatiment(typeBatiment,angle):
-	booleanRoute=true
-	if typeBatiment == "Route":
-		var batiment = load("res://Models/Route.dae").instance()
-		batiment.transform.origin =Vector3(centerX,1,centerZ)
+	if(booleanRoute==true):
+		print("Route déjà sur ce terrain : Croisement à update")
+		changementModel()
+	if typeBatiment == "Route" and booleanRoute==false:
+		booleanRoute=true
+		typeRouteModel = load("res://Models/Route.dae").instance()
+		typeRouteModel.transform.origin =Vector3(centerX,1,centerZ)
 		if(angle!=0):
-			batiment.rotate_y(deg2rad(angle))
+			typeRouteModel.rotate_y(deg2rad(angle))
 		print(spatial)
-		spatial.add_child(batiment)
+		spatial.add_child(typeRouteModel)
+	refreshRouteAutour()
+	changementModel()
 pass 
 
 
@@ -69,3 +76,41 @@ func generateModel():
 	maCaseModel.transform.origin = Vector3(centerX,1,centerZ)
 	spatial.add_child(maCaseModel)
 pass
+
+func changementModel():
+	if(booleanRoute):
+		if(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==false and caseVoisinBas.booleanRoute==false):
+			switchModelFromSpatial("res://Models/RouteGaucheVersHaut.dae")
+		elif(caseVoisinGauche.booleanRoute and caseVoisinHaut.booleanRoute and caseVoisinDroite.booleanRoute and caseVoisinBas.booleanRoute==false):
+			switchModelFromSpatial("res://Models/RouteHautDouble.dae")
+		elif(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==true and caseVoisinBas.booleanRoute==true):
+			switchModelFromSpatial("res://Models/RouteCroix.dae")
+		elif(caseVoisinGauche.booleanRoute and caseVoisinHaut.booleanRoute==false and caseVoisinDroite.booleanRoute and caseVoisinBas.booleanRoute):
+			switchModelFromSpatial("res://Models/RouteBasDouble.dae")
+		elif(caseVoisinGauche.booleanRoute==false and caseVoisinHaut.booleanRoute==false and caseVoisinDroite.booleanRoute==true and caseVoisinBas.booleanRoute==true):
+			switchModelFromSpatial("res://Models/RouteDroiteBas.dae")
+		elif(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==false and caseVoisinBas.booleanRoute==false):
+			switchModelFromSpatial("res://Models/RouteGaucheVersHaut.dae")
+		elif(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==false and caseVoisinDroite.booleanRoute==false and caseVoisinBas.booleanRoute==true):
+			switchModelFromSpatial("res://Models/RouteGaucheVersBas.dae")
+		elif(caseVoisinGauche.booleanRoute==false and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==true and caseVoisinBas.booleanRoute==true):
+			switchModelFromSpatial("res://Models/RouteDroiteVersHautBas.dae")
+		elif(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==false and caseVoisinBas.booleanRoute==true):
+			switchModelFromSpatial("res://Models/RouteGaucheVersHautBas.dae")	
+	pass
+
+
+func switchModelFromSpatial(chemin):
+	spatial.remove_child(typeRouteModel)
+	typeRouteModel= load(chemin).instance()
+	typeRouteModel.transform.origin =Vector3(centerX,1,centerZ)
+	spatial.add_child(typeRouteModel)
+	pass
+
+func refreshRouteAutour():
+	caseVoisinDroite.changementModel()
+	caseVoisinGauche.changementModel()
+	caseVoisinBas.changementModel()
+	caseVoisinHaut.changementModel()
+	pass
+

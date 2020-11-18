@@ -25,6 +25,17 @@ var spacingX
 var booleanRoute=false
 
 
+
+#le coutG (le cout pour aller du point de départ au nœud considéré) ;
+#le coutH (le cout pour aller du nœud considéré au point de destination) ;
+#le coutF (somme des précédents, mais mémorisé pour ne pas le recalculer à chaque fois) ;
+#PATHFINDING VARS
+var cout_g=0
+var cout_h=0
+var cout_f 
+var pointeurNoeudParent
+
+
 var typeRouteModel
 
 # Called when the node enters the scene tree for the first time.
@@ -55,9 +66,13 @@ func setCaseTopLeft(x,z,spacingXParam,spacingZParam, node):
 
 func trouverVoisinCase(var mapParam,spacingXParam,spacingZParam):
 	caseVoisinDroite = mapParam.getClosestCaseMap(centerX+spacingXParam,centerZ)
+	casesVoisines.insert(0,caseVoisinDroite)
 	caseVoisinGauche = mapParam.getClosestCaseMap(centerX-spacingXParam,centerZ)
+	casesVoisines.insert(1,caseVoisinGauche)
 	caseVoisinHaut = mapParam.getClosestCaseMap(centerX,centerZ-spacingZParam)
+	casesVoisines.insert(2,caseVoisinHaut)
 	caseVoisinBas = mapParam.getClosestCaseMap(centerX,centerZ+spacingZParam)
+	casesVoisines.insert(3,caseVoisinBas)
 	pass
 
 func ajouterBatiment(typeBatiment,angle):
@@ -117,9 +132,13 @@ func switchModelFromSpatial(chemin):
 	pass
 
 func refreshRouteAutour():
-	caseVoisinDroite.changementModel()
-	caseVoisinGauche.changementModel()
-	caseVoisinBas.changementModel()
-	caseVoisinHaut.changementModel()
+	if(caseVoisinDroite):
+		caseVoisinDroite.changementModel()
+	if(caseVoisinGauche):
+		caseVoisinGauche.changementModel()
+	if(caseVoisinBas):
+		caseVoisinBas.changementModel()
+	if(caseVoisinHaut):
+		caseVoisinHaut.changementModel()
 	pass
 

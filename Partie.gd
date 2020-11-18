@@ -83,6 +83,7 @@ func _input(event):
 			if booleanRoute==true and booleanPositionDebut==true:
 				route.setCaseFinRoute(caseSelection)
 				booleanRoute=false
+				booleanConstruction=false
 				booleanPositionDebut=false
 				if positionDebutRoute:
 					print("Set du fin")

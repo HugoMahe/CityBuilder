@@ -37,7 +37,7 @@ func init(spatial,xCoor,zCoor,case):
 		individu.transform.origin = Vector3(caseX,1,caseZ)
 		population.insert(i,individu)
 		individu.set_script(scriptPopulation)
-		individu.init(case)
+		individu.init(case,noeudSpatial)
 		noeudSpatial.add_child(individu)
 
 

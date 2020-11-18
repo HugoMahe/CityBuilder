@@ -2,7 +2,8 @@ extends MeshInstance
 
 var matrix = []
 var Case = load("res://MapScript/Case.gd")
-var Cabane = load("res://MapScript/Batiment/Cabane.gd").new()
+var CabaneClass = load("res://MapScript/Batiment/Cabane.gd")
+var AubergeClass = load("res://MapScript/Batiment/Auberge.gd")
 var ready = false
 
 
@@ -79,12 +80,17 @@ func checkTypeProduction():
 
 func ajoutBatimentMemoire(batimentType):
 	print("Ajout du batiment ", batimentType)
+	var _valeurClass
+	if(batimentType=="auberge"):
+		_valeurClass = AubergeClass
+	elif(batimentType=="cabane"):
+		_valeurClass =CabaneClass
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):
 				#print(matrix[x][y])
 				#print(Cabane)
-				matrix[x][y].setBatiment(Cabane)
+				matrix[x][y].setBatiment(_valeurClass.new())
 				print("Batiment :", matrix[x][y].getBatiment())
 				matrix[x][y].getBatiment().setCoordonnes(x,y)
 				return

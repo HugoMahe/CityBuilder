@@ -97,6 +97,9 @@ func changementModel():
 			switchModelFromSpatial("res://Models/RouteDroiteVersHautBas.dae")
 		elif(caseVoisinGauche.booleanRoute==true and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==false and caseVoisinBas.booleanRoute==true):
 			switchModelFromSpatial("res://Models/RouteGaucheVersHautBas.dae")	
+		elif(caseVoisinGauche.booleanRoute==false and caseVoisinHaut.booleanRoute==true and caseVoisinDroite.booleanRoute==true and caseVoisinBas.booleanRoute==false):
+			switchModelFromSpatial("res://Models/RouteDroiteVersHaut.dae")	
+
 	pass
 
 

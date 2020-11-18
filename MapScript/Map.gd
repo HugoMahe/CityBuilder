@@ -78,7 +78,7 @@ func checkTypeProduction():
 	retour=0
 
 
-func ajoutBatimentMemoire(batimentType):
+func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
 	print("Ajout du batiment ", batimentType)
 	var _valeurClass
 	if(batimentType=="auberge"):
@@ -92,7 +92,7 @@ func ajoutBatimentMemoire(batimentType):
 				#print(Cabane)
 				matrix[x][y].setBatiment(_valeurClass.new())
 				print("Batiment :", matrix[x][y].getBatiment())
-				matrix[x][y].getBatiment().setCoordonnes(x,y)
+				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor)
 				return
 	pass 
 

@@ -35,7 +35,6 @@ func _ready():
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
 		bouton.connect("click",self,"menuConstruction")
-		
 	$GUI.updateRessource(stockage)
 	pass
 
@@ -72,8 +71,9 @@ func _input(event):
 			var positionZ = from.z - nor.z * (from.y/nor.y)
 			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
 			if booleanConstruction==true:
-				creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
-				return
+				if(caseSelection):
+					creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
+					return
 			if booleanRoute==true and booleanPositionDebut==false:
 				route.setPlacementBoolean(true)
 				route.setCaseDebutRoute(caseSelection)
@@ -88,8 +88,6 @@ func _input(event):
 					print("POSITION DEBUT ROUTE",positionDebutRoute)
 					route.setPlacementBoolean(true)
 					route.setCaseDebut()
-			
-	
 	if event.is_action_pressed("ui_cancel"):
 		if booleanConstruction:
 			booleanConstruction = false
@@ -114,12 +112,12 @@ func creerBatiment(xCoor,zCoor, typeBatiment, angle):
 	print("BATIMENT",typeBatiment)
 	if typeBatiment == "Cabane":
 		memoireTest = load("res://Models/Cabane.dae").instance()
-		map.ajoutBatimentMemoire("cabane")
+		map.ajoutBatimentMemoire("cabane",xCoor,zCoor)
 		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)
 	if typeBatiment == "Auberge":
 		memoireTest = load("res://Models/Auberge.dae").instance()
-		map.ajoutBatimentMemoire("auberge")
+		map.ajoutBatimentMemoire("auberge",xCoor,zCoor)
 		memoireTest.transform = Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)
 pass

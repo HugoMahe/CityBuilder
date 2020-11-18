@@ -23,6 +23,7 @@ var caseVoisinGauche
 var spacingZ
 var spacingX
 var booleanRoute=false
+var constructible=true setget setConstructible, isConstructible
 
 
 var typeRouteModel
@@ -123,3 +124,8 @@ func refreshRouteAutour():
 	caseVoisinHaut.changementModel()
 	pass
 
+func isConstructible():
+	return constructible
+	
+func setConstructible(boolean):
+	constructible = boolean

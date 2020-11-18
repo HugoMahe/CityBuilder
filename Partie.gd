@@ -118,7 +118,7 @@ func creerBatiment(xCoor,zCoor, typeBatiment, angle):
 	if typeBatiment == "Auberge":
 		memoireTest = load("res://Models/Auberge.dae").instance()
 		map.ajoutBatimentMemoire("auberge",xCoor,zCoor)
-		memoireTest.transform = Vector3(xCoor,1,zCoor)
+		memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)
 pass
 

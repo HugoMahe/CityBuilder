@@ -11,6 +11,9 @@ var population = []
 var caseX
 var caseZ
 
+var x=0
+var y=0
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -38,3 +41,8 @@ func produit():
 func getBatiment():
 	return "Auberge"
 	pass 
+	
+func setCoordonnes(xParam, yParam):
+	x=xParam
+	y=yParam
+	pass

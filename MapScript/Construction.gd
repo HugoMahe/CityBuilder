@@ -1,4 +1,4 @@
-extends Area
+extends Spatial
 
 export var nom = ""
 export var typeRessource = ""

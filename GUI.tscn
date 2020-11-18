@@ -234,7 +234,6 @@ text = "par seconde"
 align = 1
 
 [node name="menuConstruction" type="Control" parent="."]
-visible = false
 anchor_right = 0.182
 margin_top = 113.0
 margin_right = 101.632

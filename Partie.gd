@@ -148,4 +148,4 @@ func quitter_jeu():
 
 func set_inMenuPrincipal(boolean):
 	inMenuPrincipal = boolean
-	$Spatial.set_bloque(boolean)
+	$cameraPosition.set_bloque(boolean)

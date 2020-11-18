@@ -88,8 +88,6 @@ func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):
-				#print(matrix[x][y])
-				#print(Cabane)
 				matrix[x][y].setBatiment(_valeurClass.new())
 				print("Batiment :", matrix[x][y].getBatiment())
 				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor)

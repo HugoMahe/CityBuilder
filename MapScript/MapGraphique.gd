@@ -41,6 +41,7 @@ func generateGraphicalGridMap(nodeOriginGridParam, nodeEndGridParam,spatialParam
 			mapCase[formatageCle] = caseGraphiqueClass.new()
 			mapCase[formatageCle].setCaseTopLeft(xOrigin,zOrigin,spacingX,spacingZ, nodeOriginGridParam.get_parent())
 			mapCase[formatageCle].generateModel()
+			mapCase[formatageCle].setMap(self)
 			zOrigin=zOrigin +spacingZ
 			y = y+1
 		zOrigin = nodeOriginGridParam.translation[2]

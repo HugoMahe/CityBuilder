@@ -70,9 +70,10 @@ func _input(event):
 			var positionX = from.x - nor.x * (from.y/nor.y)
 			var positionZ = from.z - nor.z * (from.y/nor.y)
 			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
-			if booleanConstruction==true:
+			print("valeur boolean route ",booleanRoute)
+			if booleanConstruction==true and booleanRoute==false:
 				if(caseSelection):
-					creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0)
+					creerBatiment(caseSelection.centerX,caseSelection.centerZ, typeBatimentConstruction, 0, caseSelection)
 					return
 			if booleanRoute==true and booleanPositionDebut==false:
 				route.setPlacementBoolean(true)
@@ -107,7 +108,7 @@ func setBooleanRoute():
 	pass
 
 
-func creerBatiment(xCoor,zCoor, typeBatiment, angle):
+func creerBatiment(xCoor,zCoor, typeBatiment, angle, case):
 	var memoireTest
 	print("BATIMENT",typeBatiment)
 	if typeBatiment == "Cabane":
@@ -116,7 +117,10 @@ func creerBatiment(xCoor,zCoor, typeBatiment, angle):
 		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)
 	if typeBatiment == "Auberge":
+		var scriptAuberge = load("res://MapScript/Batiment/Auberge.gd")
 		memoireTest = load("res://Models/Auberge.dae").instance()
+		memoireTest.set_script(scriptAuberge)
+		memoireTest.init(self,xCoor,zCoor,case)
 		map.ajoutBatimentMemoire("auberge",xCoor,zCoor)
 		memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
 		self.add_child(memoireTest)

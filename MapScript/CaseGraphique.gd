@@ -31,6 +31,12 @@ var typeRouteModel
 func _ready():
 	pass # Replace with function body.
 
+func setMap(mapParam):
+	mapGraphique=mapParam
+
+func getMap():
+	return mapGraphique
+
 func setCaseTopLeft(x,z,spacingXParam,spacingZParam, node):
 	spatial=node
 	spacingX = spacingXParam

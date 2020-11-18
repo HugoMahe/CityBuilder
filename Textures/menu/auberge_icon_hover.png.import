@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cabane_icon_hover.png-d0806c032980a27cf460a4eb75eb532a.stex"
+path="res://.import/auberge_icon_hover.png-e1eef419f120cdce2766ace1bba7ac58.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/menu/cabane_icon_hover.png"
-dest_files=[ "res://.import/cabane_icon_hover.png-d0806c032980a27cf460a4eb75eb532a.stex" ]
+source_file="res://Textures/menu/auberge_icon_hover.png"
+dest_files=[ "res://.import/auberge_icon_hover.png-e1eef419f120cdce2766ace1bba7ac58.stex" ]
 
 [params]
 

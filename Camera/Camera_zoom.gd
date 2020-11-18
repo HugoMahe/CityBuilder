@@ -1,21 +1,12 @@
 extends Camera
 
-var limit_zoom_in = 3
-var limit_zoom_out = 15
-var bloque = false
+var limit_zoom_in = -5
+var limit_zoom_out = 10
 
-func _input(event):
-	if !bloque:
-		if event is InputEventMouseButton:
-			if event.is_pressed():
-				var z_strafe = 0
-				if event.button_index == BUTTON_WHEEL_UP:
-					z_strafe = -1
-				if event.button_index == BUTTON_WHEEL_DOWN:
-					z_strafe = 1
-					
-				translate(Vector3(0, 0, z_strafe) * get_parent().speed/10)
-			
+func zoom(zoom, speed):
+	if transform.origin.z + (zoom * speed*75) < limit_zoom_in:
+		zoom = 0
+	elif transform.origin.z + (zoom * speed*75) > limit_zoom_out:
+		zoom = 0
+	translate(Vector3(0, 0, zoom) * speed*75)
 
-func set_bloque(boolean):
-	bloque = boolean

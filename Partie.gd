@@ -18,6 +18,7 @@ var mapCaseGraphique
 var booleanPositionDebut = false
 var inMenuPrincipal = false
 var pointeur
+var batimentConstructible
 
 func _ready():
 	#GENERATION DE LA MAP
@@ -29,7 +30,7 @@ func _ready():
 	mapGraphiqueClass.trouverVoisin()
 	#DEFINITION DU POINTEUR DE CASE
 	pointeur = load("res://Models/Pointeur.dae").instance()
-	pointeur.transform.origin =Vector3(0,1,0)
+	pointeur.transform.origin = Vector3(0,2,0)
 	self.add_child(pointeur)
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
@@ -62,8 +63,11 @@ func _input(event):
 			var positionX = from.x - nor.x * (from.y/nor.y)
 			var positionZ = from.z - nor.z * (from.y/nor.y)
 			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
-			if(caseSelection):			
-				pointeur.transform.origin =Vector3(caseSelection.centerX,1,caseSelection.centerZ)
+			if(caseSelection):
+				if !booleanConstruction:
+					pointeur.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
+				else:
+					batimentConstructible.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
 		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 			var from = get_viewport().get_camera().project_ray_origin(event.position)
 			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
@@ -90,9 +94,12 @@ func _input(event):
 					print("POSITION DEBUT ROUTE",positionDebutRoute)
 					route.setPlacementBoolean(true)
 					route.setCaseDebut()
+					
 	if event.is_action_pressed("ui_cancel"):
 		if booleanConstruction:
 			booleanConstruction = false
+			self.remove_child(batimentConstructible)
+			pointeur.show()
 		else:
 			$GUI.cancel_menu()
 
@@ -102,30 +109,40 @@ func setBooleanConstruction():
 	
 func setTypeBatimentConstruction(parametre):
 	typeBatimentConstruction = parametre
+	if typeBatimentConstruction == "Cabane":
+		batimentConstructible = load("res://Models/Cabane.dae").instance()
+	if typeBatimentConstruction == "Auberge":
+		batimentConstructible = load("res://Models/Auberge.dae").instance()
+	self.add_child(batimentConstructible)
+	pointeur.hide()
 	pass
 	
 func setBooleanRoute():
 	booleanRoute = true
 	pass
 
-
-func creerBatiment(xCoor,zCoor, typeBatiment, angle, case):
-	var memoireTest
-	print("BATIMENT",typeBatiment)
-	if typeBatiment == "Cabane":
-		memoireTest = load("res://Models/Cabane.dae").instance()
-		map.ajoutBatimentMemoire("cabane",xCoor,zCoor)
-		memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
-		self.add_child(memoireTest)
-	if typeBatiment == "Auberge":
-		var scriptAuberge = load("res://MapScript/Batiment/Auberge.gd")
-		memoireTest = load("res://Models/Auberge.dae").instance()
-		memoireTest.set_script(scriptAuberge)
-		memoireTest.init(self,xCoor,zCoor,case)
-		map.ajoutBatimentMemoire("auberge",xCoor,zCoor)
-		memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
-		self.add_child(memoireTest)
-pass
+func creerBatiment(xCoor,zCoor, typeBatiment, angle, caseGraphique):
+	if caseGraphique.isConstructible():
+		var memoireTest
+		print("BATIMENT",typeBatiment)
+		if typeBatiment == "Cabane":
+			memoireTest = load("res://Models/Cabane.dae").instance()
+			map.ajoutBatimentMemoire("cabane", xCoor, zCoor)
+			memoireTest.transform.origin =Vector3(xCoor,1,zCoor)
+			self.add_child(memoireTest)
+			caseGraphique.setConstructible(false)
+			self.remove_child(batimentConstructible)
+			booleanConstruction = false
+			pointeur.show()
+		if typeBatiment == "Auberge":
+			memoireTest = load("res://Models/Auberge.dae").instance()
+			map.ajoutBatimentMemoire("auberge", xCoor, zCoor)
+			memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
+			self.add_child(memoireTest)
+			caseGraphique.setConstructible(false)
+			self.remove_child(batimentConstructible)
+			booleanConstruction = false
+			pointeur.show()
 
 
 func peutAcheterBatiment(batiment):
@@ -149,4 +166,4 @@ func quitter_jeu():
 
 func set_inMenuPrincipal(boolean):
 	inMenuPrincipal = boolean
-	$Spatial.set_bloque(boolean)
+	$cameraPosition.set_bloque(boolean)

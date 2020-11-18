@@ -92,7 +92,7 @@ func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
 				print("Batiment :", matrix[x][y].getBatiment())
 				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor)
 				return
-	pass 
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

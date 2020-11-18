@@ -1,16 +1,20 @@
 extends Spatial
 
 export(float, 1, 10) var speed = 30
-var speedRotate = 2
 var bloque = false
 
-var limit = 21
+var x_min_limit = -50
+var x_max_limit = 50
+var z_min_limit = -40
+var z_max_limit = 60
+
+var speedRotate = 2
 
 func _process(delta):
 	if !bloque:
 		var x_strafe = 0
 		var z_strafe = 0
-		var y_rotation = 0
+		var zoom = 0
 		
 		if Input.is_action_pressed("strafe_left"):
 			x_strafe -=1
@@ -20,24 +24,26 @@ func _process(delta):
 			z_strafe -=1
 		if Input.is_action_pressed("strafe_down"):
 			z_strafe +=1
-		if Input.is_action_pressed("rotate_left"):
-			y_rotation +=1
-			rotation(1)
-		if Input.is_action_pressed("rotate_right"):
-			y_rotation -=1
-			rotation(-1)
-			
-
-	#	if transform.origin.x + (x_strafe * speed/20) > limit or transform.origin.x + (x_strafe * speed/20) < -limit:
-	#		x_strafe = 0
-	#	if transform.origin.z + (z_strafe * speed/20)> limit or transform.origin.z + (z_strafe * speed/20) < -limit:
-	#		z_strafe = 0
+		if Input.is_action_just_released("zoom_in"):
+			zoom -= 1
+		if Input.is_action_just_released("zoom_out"):
+			zoom += 1
 		
-		translate(Vector3(x_strafe , 0, z_strafe) * speed * get_process_delta_time())
+		deplacer(x_strafe, z_strafe, delta)
+		$cameraZoom.zoom(zoom, delta)
 
-func rotation(y_rotation):
-		rotate(Vector3(0, y_rotation, 0), speedRotate * get_process_delta_time())
+func deplacer(x_strafe, z_strafe, delta) :
+	if transform.origin.x + (x_strafe * speed/20) > x_max_limit:
+		x_strafe = 0
+	elif transform.origin.x + (x_strafe * speed/20) < x_min_limit:
+		x_strafe = 0
+	if transform.origin.z + (z_strafe * speed/20) > z_max_limit:
+		z_strafe = 0
+	elif transform.origin.z + (z_strafe * speed/20) < z_min_limit:
+		z_strafe = 0
+		
+	translate(Vector3(x_strafe , 0, z_strafe) * speed * delta)
+
 
 func set_bloque(boolean):
 	bloque = boolean
-	$Camera.set_bloque(boolean)

@@ -11,3 +11,12 @@ func update_info(batiment):
 	if batiment.couts.nourriture > 0:
 		$VBoxContainer/coutNourriture.text = "          " + str(batiment.couts.nourriture) + " nourriture"
 	$VBoxContainer/description.text = batiment.desc
+
+func delete_info():
+	$VBoxContainer/Nom.text = ""
+	$VBoxContainer/Ressource/Type.text = ""
+	$VBoxContainer/Ressource/Valeur.text = ""
+	$VBoxContainer/coutBois.text = ""
+	$VBoxContainer/coutCharbon.text = ""
+	$VBoxContainer/coutNourriture.text = ""
+	$VBoxContainer/description.text = ""

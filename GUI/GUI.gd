@@ -11,6 +11,7 @@ func cancel_UI():
 	
 func cacher_menuBatiment():
 	$menuBatiment.hide()
+	$menuBatiment.delete_info()
 	menuBatimentVisible = false
 	
 func montrer_menuBatiment(batiment):

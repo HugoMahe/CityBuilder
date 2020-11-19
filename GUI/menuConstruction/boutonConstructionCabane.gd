@@ -27,7 +27,7 @@ func _on_TextureButton_pressed():
 func _on_Cabane_mouse_entered():
 	var cab = Cabane.new()
 	var batiment = {"nom": "Cabane", 
-		"typeRessource": "Bois", 
+		"typeRessource": "Nourriture", 
 		"prod": 20,
 		"couts": cab.getCouts(),
 		"desc": cab.desc}

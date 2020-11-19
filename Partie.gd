@@ -36,8 +36,7 @@ func _ready():
 
 	#A VERIFIER AVEC LEO SI RAFFINAGE POSSIBLE
 	#Connection des boutons d'interface
-	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
-	for bouton in boutonConstruction:
+	for bouton in get_tree().get_nodes_in_group("boutonConstruction"):
 		bouton.connect("click",self,"menuConstruction")
 	$GUI.updateRessource(stockage)
 	pass
@@ -56,6 +55,7 @@ func menuConstruction():
 			child.montrer_menuConstruction()
 	pass
 
+
 func remplirStockage():
 	stockage.ajouterBois(ressourceDuTour[0])
 	stockage.ajouterCharbon(ressourceDuTour[1])
@@ -65,24 +65,19 @@ func remplirStockage():
 	
 
 func _input(event):
+	var tabPosition
 	if !inMenuPrincipal:
 		if event is InputEventMouseMotion:
-			var from = get_viewport().get_camera().project_ray_origin(event.position)
-			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
-			var positionX = from.x - nor.x * (from.y/nor.y)
-			var positionZ = from.z - nor.z * (from.y/nor.y)
-			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
+			tabPosition = calculPositionEnv3D(get_viewport().get_camera().project_ray_origin(event.position),  get_viewport().get_camera().project_ray_normal(event.position))
+			var caseSelection = mapGraphiqueClass.getClosestCaseMap(tabPosition[0],tabPosition[1])
 			if(caseSelection):
 				if !booleanConstruction:
 					pointeur.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
 				else:
 					batimentConstructible.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
 		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-			var from = get_viewport().get_camera().project_ray_origin(event.position)
-			var nor =  get_viewport().get_camera().project_ray_normal(event.position)
-			var positionX = from.x - nor.x * (from.y/nor.y)
-			var positionZ = from.z - nor.z * (from.y/nor.y)
-			var caseSelection = mapGraphiqueClass.getClosestCaseMap(positionX,positionZ)
+			tabPosition = calculPositionEnv3D(get_viewport().get_camera().project_ray_origin(event.position),  get_viewport().get_camera().project_ray_normal(event.position))
+			var caseSelection = mapGraphiqueClass.getClosestCaseMap(tabPosition[0],tabPosition[1])
 			print("valeur boolean route ",booleanRoute)
 			if booleanConstruction==true and booleanRoute==false:
 				if(caseSelection):
@@ -111,6 +106,17 @@ func _input(event):
 			pointeur.show()
 		else:
 			$GUI.cancel_menu()
+
+
+func calculPositionEnv3D(from, nor):
+	var tabPositionXZ = []
+	var positionX = from.x - nor.x * (from.y/nor.y)
+	var positionZ = from.z - nor.z * (from.y/nor.y)
+	tabPositionXZ.push_back(positionX)
+	tabPositionXZ.push_back(positionZ)
+	return tabPositionXZ
+	pass
+
 
 func setBooleanConstruction():
 	booleanConstruction = true
@@ -158,15 +164,23 @@ func creerBatiment(xCoor,zCoor, typeBatiment, angle, caseGraphique):
 			booleanConstruction = false
 			pointeur.show()
 		if typeBatiment == "Ferme":
-			memoireTest = load("res://Models/Champ.dae").instance()
-			map.ajoutBatimentMemoire("auberge", xCoor, zCoor)
-			memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
-			self.add_child(memoireTest)
+			EcrireChargerBatiment("res://Models/Champ.dae",typeBatiment,xCoor,zCoor)
+			#memoireTest = load("res://Models/Champ.dae").instance()
+			#map.ajoutBatimentMemoire("auberge", xCoor, zCoor)
+			#memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
+			#self.add_child(memoireTest)
 			caseGraphique.setConstructible(false)
 			self.remove_child(batimentConstructible)
 			booleanConstruction = false
 			pointeur.show()
 
+		
+func EcrireChargerBatiment(cheminMesh,typeBatiment,xCoor,zCoor):
+	var mesh = load(cheminMesh).instance()
+	map.ajoutBatimentMemoire(typeBatiment, xCoor,zCoor)
+	mesh.transform.origin = Vector3(xCoor,1,zCoor)
+	self.add_child(mesh)
+	pass
 
 func peutAcheterBatiment(batiment):
 	var coutBois=0

@@ -4,6 +4,7 @@ var matrix = []
 var Case = load("res://MapScript/Case.gd")
 var CabaneClass = load("res://MapScript/Batiment/Cabane.gd")
 var AubergeClass = load("res://MapScript/Batiment/Auberge.gd")
+var fermeClass = load("res://MapScript/Batiment/Ferme.gd")
 var ready = false
 
 
@@ -80,6 +81,9 @@ func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
 		_valeurClass = AubergeClass
 	elif(batimentType=="cabane"):
 		_valeurClass =CabaneClass
+	elif(batimentType=="Ferme"):
+		print("ajout ferme")
+		_valeurClass=fermeClass
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):

@@ -39,7 +39,7 @@ func _ready():
 func init(caseCouranteParam, noeudSpatial):
 	noeudS = noeudSpatial
 	caseCourante=caseCouranteParam
-	caseObjectif=caseCouranteParam.caseVoisinGauche.caseVoisinGauche.caseVoisinHaut.caseVoisinHaut.caseVoisinGauche.caseVoisinGauche
+	caseObjectif=caseCouranteParam.caseVoisinDroite.caseVoisinGauche.caseVoisinHaut.caseVoisinHaut.caseVoisinGauche.caseVoisinGauche.caseVoisinHaut
 	positionCouranteX=caseCourante.centerX
 	positionCouranteZ=caseCourante.centerZ
 	print("[INDIVIDU] - j'ai ma case courante")

@@ -50,12 +50,28 @@ func placeFlore(tabModeleParam,mapCase,spatial):
 	print("Placement de la flore")
 	var keys = mapCase.keys()
 	for i in len(keys):
-		rng = randi() % 5
+		rng = randi() % 100
+		var posRng = mapCase[keys[i]].getRandomPos()
 		print(rng)
-		if(rng==1):
+		if(rng<10):
 			print("generation d'un modele ",tabModeleParam[0])
 			var modele = load(str(tabModeleParam[0])).instance()
-			modele.transform.origin = Vector3(mapCase[keys[i]].centerX,1,mapCase[keys[i]].centerZ)
+			modele.transform.origin = Vector3(posRng[0],1,posRng[1])
+			modele.rotate_y(deg2rad(rand_range(0.0,180.0)))
+			spatial.add_child(modele)
+			maxModele = maxModele -1
+		if(rng>20 && rng<30):
+			print("generation d'un modele ",tabModeleParam[2])
+			var modele = load(str(tabModeleParam[1])).instance()
+			modele.transform.origin = Vector3(posRng[0],1,posRng[1])
+			modele.rotate_y(deg2rad(rand_range(0.0,180.0)))
+			spatial.add_child(modele)
+			maxModele = maxModele -1
+		if(rng>20 && rng<30):
+			print("generation d'un modele ",tabModeleParam[1])
+			var modele = load(str(tabModeleParam[3])).instance()
+			modele.transform.origin = Vector3(posRng[0],1,posRng[1])
+			modele.rotate_y(deg2rad(rand_range(0.0,180.0)))
 			spatial.add_child(modele)
 			maxModele = maxModele -1
 	place=true

@@ -13,8 +13,6 @@ var nourriture = 0
 var charbon = 0
 var bois = 0 
 
-var noeudSpatial
-
 
 func genererGrid(n):
 	for x in range(n):
@@ -38,10 +36,7 @@ func _ready():
 	
 	
 #	
-func jouer(xParam):
-	print("----------------------------------- Lancement de la partie ------------------------------")
-	noeudSpatial = xParam
-	print("VALEUR DE test :", noeudSpatial)
+func jouer():
 	var ressourcesTour = jouerTour()
 	printEnsembleBatiment()
 	#printAllRessourcesFromTour()

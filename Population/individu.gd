@@ -59,12 +59,10 @@ func readTrajet():
 #retourne un trajet
 func deplacement(trajet):
 	if(trajet):
-		print("c'est pas vide")
 		print(len(trajet))
 	if((!moving && !finished) || len(trajet)>0):
 		bougerVersUneCase(trajet[0])
 	if(finished):
-		print("Degage")
 		trajet.pop_front()
 pass
 
@@ -104,7 +102,7 @@ func _process(_delta):
 pass
 
 func ajoutMesArbres(trajet):
-	print("ajout de mes arbres")
+	#print("ajout de mes arbres")
 	for i in len(trajet):
 		var mesh = load("res://Models/Terrain/Arbre.dae").instance()
 		mesh.transform.origin = Vector3(trajet[i].centerX,1,trajet[i].centerZ)

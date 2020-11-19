@@ -30,7 +30,7 @@ func _process(delta):
 			zoom += 1
 		
 		deplacer(x_strafe, z_strafe, delta)
-		$cameraZoom.zoom(zoom, delta)
+		#$cameraZoom.zoom(zoom, delta)
 
 func deplacer(x_strafe, z_strafe, delta) :
 	if transform.origin.x + (x_strafe * speed/20) > x_max_limit:

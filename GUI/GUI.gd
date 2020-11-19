@@ -16,9 +16,11 @@ func cacher_menuBatiment():
 func montrer_menuBatiment(batiment):
 	""" Necessite un batiment sous le format :
 		 {
-			'nom': nom, 
+		'nom': nom, 
 		'typeRessource':typeRessource, 
-		'prod':valeurProd
+		'prod':valeurProd,
+		'couts': {'bois', 'nourriture', 'charbon}
+		'desc':description
 		}
 	"""
 	$menuBatiment.update_info(batiment)

@@ -14,6 +14,11 @@ var scriptPopulation = load("res://Population/individu.gd")
 var x=0
 var y=0
 
+func _init():
+	coutBois = 250
+	coutNourriture = 150
+	coutCharbon = 200
+	desc = "Une auberge pour garder la population bien au chaud"
 
 
 # Called when the node enters the scene tree for the first time.

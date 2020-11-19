@@ -24,22 +24,29 @@ var batimentConstructible
 func _ready():
 	#GENERATION DE LA MAP
 	map.genererGrid(5)
-	ressourceDuTour= map.jouer(self)
-	var nodeOriginGrid = get_node("OriginGrid")
-	var nodeEndGrid = get_node("FinGrid")
-	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(nodeOriginGrid,nodeEndGrid,self)
+	#ressourceDuTour= map.jouer()
+
+	#DEFINITION DE LA GRILLE GRAPHIQUE
+	mapCaseGraphique= mapGraphiqueClass.generateGraphicalGridMap(get_node("OriginGrid"), get_node("FinGrid"), self)
 	generateurFauneClass.lancementGeneration("res://Models/Flore/",mapCaseGraphique,self)
+	#DEFINITION DE LA LOGIQUE DES CASES GRAPHIQUES
 	mapGraphiqueClass.trouverVoisin()
 	#DEFINITION DU POINTEUR DE CASE
-	pointeur = load("res://Models/Pointeur.dae").instance()
-	pointeur.transform.origin = Vector3(0,2,0)
-	self.add_child(pointeur)
+	generatePointeur()
+
+	#A VERIFIER AVEC LEO SI RAFFINAGE POSSIBLE
 	#Connection des boutons d'interface
 	var boutonConstruction = get_tree().get_nodes_in_group("boutonConstruction")
 	for bouton in boutonConstruction:
 		bouton.connect("click",self,"menuConstruction")
 	$GUI.updateRessource(stockage)
 	pass
+
+
+func generatePointeur():
+	pointeur = load("res://Models/Pointeur.dae").instance()
+	pointeur.transform.origin = Vector3(0,2,0)
+	self.add_child(pointeur)
 
 
 func menuConstruction():
@@ -115,6 +122,8 @@ func setTypeBatimentConstruction(parametre):
 		batimentConstructible = load("res://Models/Cabane.dae").instance()
 	if typeBatimentConstruction == "Auberge":
 		batimentConstructible = load("res://Models/Auberge.dae").instance()
+	if typeBatimentConstruction == "Ferme":
+		batimentConstructible = load("res://Models/Champ.dae").instance()
 	self.add_child(batimentConstructible)
 	pointeur.hide()
 	pass
@@ -143,6 +152,15 @@ func creerBatiment(xCoor,zCoor, typeBatiment, angle, caseGraphique):
 			var scriptAuberge = load("res://MapScript/Batiment/Auberge.gd")
 			memoireTest.set_script(scriptAuberge)
 			memoireTest.init(self,xCoor,zCoor,caseGraphique)
+			self.add_child(memoireTest)
+			caseGraphique.setConstructible(false)
+			self.remove_child(batimentConstructible)
+			booleanConstruction = false
+			pointeur.show()
+		if typeBatiment == "Ferme":
+			memoireTest = load("res://Models/Champ.dae").instance()
+			map.ajoutBatimentMemoire("auberge", xCoor, zCoor)
+			memoireTest.transform.origin = Vector3(xCoor,1,zCoor)
 			self.add_child(memoireTest)
 			caseGraphique.setConstructible(false)
 			self.remove_child(batimentConstructible)

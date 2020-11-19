@@ -5,8 +5,8 @@
       <author>Blender User</author>
       <authoring_tool>Blender 2.90.1 commit date:2020-09-23, commit time:06:43, hash:3e85bb34d0d7</authoring_tool>
     </contributor>
-    <created>2020-11-19T13:57:56</created>
-    <modified>2020-11-19T13:57:56</modified>
+    <created>2020-11-19T14:15:48</created>
+    <modified>2020-11-19T14:15:48</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
@@ -490,7 +490,7 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Icosphere_008" name="Icosphere.008" type="NODE">
-        <matrix sid="transform">-0.08549969 0.2942801 0 2.269529 -0.2684729 -0.09371845 0 0.659373 0 0 0.2926526 0.7327644 0 0 0 1</matrix>
+        <matrix sid="transform">-0.1061676 0.3654168 0 2.830473 -0.333371 -0.1163731 0 0.6636792 0 0 0.3633958 0.9828134 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_008-mesh" name="Icosphere.008">
           <bind_material>
             <technique_common>
@@ -502,7 +502,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_007" name="Icosphere.007" type="NODE">
-        <matrix sid="transform">-0.07770365 0.1677431 0 1.694601 -0.243993 -0.05342059 0 0.5984513 0 0 0.2926526 1.042841 0 0 0 1</matrix>
+        <matrix sid="transform">-0.09648702 0.2082917 0 2.116567 -0.3029736 -0.06633399 0 0.5880309 0 0 0.3633958 1.367846 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_007-mesh" name="Icosphere.007">
           <bind_material>
             <technique_common>
@@ -514,7 +514,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_006" name="Icosphere.006" type="NODE">
-        <matrix sid="transform">0.2560672 0 0 1.329282 0 0.176044 0 0.7339163 0 0 0.1414679 0.863391 0 0 0 1</matrix>
+        <matrix sid="transform">0.3179666 0 0 1.662939 0 0.2185993 0 0.756242 0 0 0.1756651 1.145017 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_006-mesh" name="Icosphere.006">
           <bind_material>
             <technique_common>
@@ -526,7 +526,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_005" name="Icosphere.005" type="NODE">
-        <matrix sid="transform">-0.2459212 -0.04906389 0 0.8425899 0.07136655 -0.1690687 0 0.7339163 0 0 0.2529636 0.863391 0 0 0 1</matrix>
+        <matrix sid="transform">-0.3053679 -0.06092415 0 1.058599 0.08861805 -0.2099378 0 0.756242 0 0 0.3141128 1.145017 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_005-mesh" name="Icosphere.005">
           <bind_material>
             <technique_common>
@@ -538,7 +538,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_004" name="Icosphere.004" type="NODE">
-        <matrix sid="transform">0.2560672 0 0 0.3435411 0 0.176044 0 0.5201991 0 0 0.2529636 0.8123952 0 0 0 1</matrix>
+        <matrix sid="transform">0.3179666 0 0 0.4389141 0 0.2185993 0 0.4908627 0 0 0.3141128 1.081693 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_004-mesh" name="Icosphere.004">
           <bind_material>
             <technique_common>
@@ -550,7 +550,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_003" name="Icosphere.003" type="NODE">
-        <matrix sid="transform">0.3228581 0 0 0.1355432 0 0.2219622 0 0.7515845 0 0 0.318945 1.203915 0 0 0 1</matrix>
+        <matrix sid="transform">0.4009029 0 0 0.1806366 0 0.2756173 0 0.7781811 0 0 0.3960439 1.567856 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_003-mesh" name="Icosphere.003">
           <bind_material>
             <technique_common>
@@ -562,7 +562,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_002" name="Icosphere.002" type="NODE">
-        <matrix sid="transform">0.4736377 0 0 -0.4709103 0 0.3878776 0 0.789568 0 0 0.3878776 1.480322 0 0 0 1</matrix>
+        <matrix sid="transform">0.5881307 0 0 -0.5724155 0 0.4816395 0 0.8253464 0 0 0.4816395 1.911079 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_002-mesh" name="Icosphere.002">
           <bind_material>
             <technique_common>
@@ -574,7 +574,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere_001" name="Icosphere.001" type="NODE">
-        <matrix sid="transform">0.2731455 0 0 -1.001963 0 0.2731455 0 0.835454 0 0 0.2731455 0.9854027 0 0 0 1</matrix>
+        <matrix sid="transform">0.3391733 0 0 -1.23184 0 0.3391733 0 0.8823245 0 0 0.3391733 1.296522 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere_001-mesh" name="Icosphere.001">
           <bind_material>
             <technique_common>
@@ -586,7 +586,7 @@
         </instance_geometry>
       </node>
       <node id="Icosphere" name="Icosphere" type="NODE">
-        <matrix sid="transform">0.2219622 0 0 -1.448247 0 0.2219622 0 0.3275495 0 0 0.2219622 0.8775219 0 0 0 1</matrix>
+        <matrix sid="transform">0.2756173 0 0 -1.786005 0 0.2756173 0 0.2516436 0 0 0.2756173 1.162563 0 0 0 1</matrix>
         <instance_geometry url="#Icosphere-mesh" name="Icosphere">
           <bind_material>
             <technique_common>
@@ -598,7 +598,7 @@
         </instance_geometry>
       </node>
       <node id="Plane" name="Plane" type="NODE">
-        <matrix sid="transform">0.2743031 0 0 -0.1223924 0 0.2743031 0 0.4655773 0 0 0.2743031 -0.1781639 0 0 0 1</matrix>
+        <matrix sid="transform">0.3406106 0 0 -0.1396501 0 0.3406106 0 0.4230371 0 0 0.3406106 -0.1483144 0 0 0 1</matrix>
         <instance_geometry url="#Plane-mesh" name="Plane">
           <bind_material>
             <technique_common>

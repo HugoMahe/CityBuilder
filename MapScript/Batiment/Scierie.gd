@@ -1,4 +1,4 @@
-extends Node
+extends Batiment
 var boisClass = load("res://Ressources/Bois.gd")
 
 # Declare member variables here. Examples:

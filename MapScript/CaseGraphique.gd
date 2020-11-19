@@ -49,6 +49,15 @@ func setMap(mapParam):
 func getMap():
 	return mapGraphique
 
+func getRandomPos():
+	var tabPosRng = []
+	var randomX = rand_range(caseTopLeftX, caseTopLeftX+spacingX)
+	var randomZ = rand_range(caseTopLeftZ, caseTopLeftZ+spacingZ)
+	tabPosRng.insert(0, randomX)
+	tabPosRng.insert(1, randomZ)
+	return tabPosRng
+
+
 func setCaseTopLeft(x,z,spacingXParam,spacingZParam, node):
 	spatial=node
 	spacingX = spacingXParam
@@ -94,7 +103,12 @@ pass
 
 
 func generateModel():
-	var maCaseModel = load("res://Models/CaseGraphHerbe.dae").instance()
+	var maCaseModel
+	var rng = randi() % 100
+	if(rng<10):
+		maCaseModel = load("res://Models/TerrainV2/CaseGraphHerbe2.dae").instance()
+	else:
+		maCaseModel = load("res://Models/TerrainV2/CaseGraphHerbe.dae").instance()
 	maCaseModel.transform.origin = Vector3(centerX,1,centerZ)
 	spatial.add_child(maCaseModel)
 pass

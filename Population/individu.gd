@@ -87,9 +87,6 @@ func bougerVersUneCase(objectif):
 	positionCouranteX = self.transform.origin.x
 pass
 
-
-
-
 #UPDATE A CHAQUE FRAME 
 func _process(_delta):
 		refreshCaseCourante()
@@ -97,7 +94,7 @@ func _process(_delta):
 		if(!busy):
 			setTrajet(caseCourante.getMap().retrouverChemin(caseCourante,caseObjectif))
 		else:
-			ajoutMesArbres(readTrajet())
+			#ajoutMesArbres(readTrajet())
 			deplacement(readTrajet())
 pass
 
@@ -121,8 +118,8 @@ func refreshBusy():
 	else:
 		busy=true
 	pass
-
-func consommeEtape():
+	
+func entrerBatiment():
 	pass
 
 

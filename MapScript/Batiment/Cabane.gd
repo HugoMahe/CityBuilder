@@ -1,11 +1,13 @@
 extends Batiment
 class_name Cabane
 var nourritureClass = load("res://Ressources/Nourriture.gd")
+var coutBois
+var desc
 
+func _init():
+	coutBois = 150
+	desc = "Une cabane pour se cacher et qui sert de point de chute lors de la chasse"
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 var x=0
 var y=0

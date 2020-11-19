@@ -10,6 +10,12 @@ var position3DX
 var position3Dy
 var position3Dz
 
+var desc = ""
+
+var coutBois = 0
+var coutCharbon = 0
+var coutNourriture = 0
+
 var travailleurs = []
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +29,12 @@ func set3Dcoordinates(x,y,z):
 	position3DX=x
 	position3Dy=y
 	position3Dz=z
+	
+func getCouts():
+	var couts = {"bois": coutBois, 
+		"charbon": coutCharbon, 
+		"nourriture": coutNourriture}
+	return couts
 
 func addTravailleur(individu):
 	travailleurs.push_front(individu)

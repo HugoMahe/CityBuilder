@@ -1,6 +1,6 @@
 extends TextureButton
 
-var nodeGui = "vide"
+var Cabane = load("res://MapScript/Batiment/Cabane.gd")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -22,3 +22,17 @@ func _on_TextureButton_pressed():
 	get_node("/root/Map").setBooleanConstruction()
 	get_node("/root/Map").setTypeBatimentConstruction("Cabane")
 	pass # Replace with function body.
+
+
+func _on_Cabane_mouse_entered():
+	var cab = Cabane.new()
+	var batiment = {"nom": "Cabane", 
+		"typeRessource": "Nourriture", 
+		"prod": 20,
+		"couts": cab.getCouts(),
+		"desc": cab.desc}
+	get_node("/root/Map/GUI").montrer_menuBatiment(batiment)
+
+
+func _on_Cabane_mouse_exited():
+	get_node("/root/Map/GUI").cacher_menuBatiment()

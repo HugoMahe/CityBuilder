@@ -11,14 +11,17 @@ func cancel_UI():
 	
 func cacher_menuBatiment():
 	$menuBatiment.hide()
+	$menuBatiment.delete_info()
 	menuBatimentVisible = false
 	
 func montrer_menuBatiment(batiment):
 	""" Necessite un batiment sous le format :
 		 {
-			'nom': nom, 
+		'nom': nom, 
 		'typeRessource':typeRessource, 
-		'prod':valeurProd
+		'prod':valeurProd,
+		'couts': {'bois', 'nourriture', 'charbon}
+		'desc':description
 		}
 	"""
 	$menuBatiment.update_info(batiment)

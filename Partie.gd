@@ -75,7 +75,7 @@ func _input(event):
 			if(caseSelection):
 				if !booleanConstruction:
 					pointeur.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
-				else:
+				elif !booleanRoute:
 					batimentConstructible.transform.origin = Vector3(caseSelection.centerX,2,caseSelection.centerZ)
 		if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 			var from = get_viewport().get_camera().project_ray_origin(event.position)
@@ -120,17 +120,18 @@ func setTypeBatimentConstruction(parametre):
 	typeBatimentConstruction = parametre
 	if typeBatimentConstruction == "Cabane":
 		batimentConstructible = load("res://Models/Cabane.dae").instance()
+		self.add_child(batimentConstructible)
 	if typeBatimentConstruction == "Auberge":
 		batimentConstructible = load("res://Models/Auberge.dae").instance()
+		self.add_child(batimentConstructible)
 	if typeBatimentConstruction == "Ferme":
 		batimentConstructible = load("res://Models/Champ.dae").instance()
-	self.add_child(batimentConstructible)
+		self.add_child(batimentConstructible)
 	pointeur.hide()
 	pass
 	
 func setBooleanRoute():
 	booleanRoute = true
-	pass
 
 func creerBatiment(xCoor,zCoor, typeBatiment, angle, caseGraphique):
 	if caseGraphique.isConstructible():

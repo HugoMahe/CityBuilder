@@ -3,8 +3,8 @@ class_name Case
 
 var constructible= true setget setConstructible, getConstructible
 var BatimentClasse = load("res://MapScript/Batiment.gd")
-var batiment = null setget setBatiment, getBatiment
-
+var batiment 
+var nom
 var caseGraphique = null setget setCaseGraphique, getCaseGraphique
 
 # Called when the node enters the scene tree for the first time.
@@ -20,7 +20,8 @@ func setConstructible(nouvelleVar):
 	constructible= nouvelleVar
 
 # construire un batiment 
-func setBatiment(batimentParam):
+func setBatiment(batimentParam,nomParam):
+	nom=nomParam
 	batiment= batimentParam
 	setConstructible(false)
 
@@ -42,6 +43,10 @@ func removeBatiment():
 # Recuperation du batiment
 func getBatiment():
 	return batiment
+
+# Recuperation du batiment
+func getBatimentNom():
+	return nom
 
 # Joue le tour sur la case
 func jouer():

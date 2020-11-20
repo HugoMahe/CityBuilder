@@ -39,12 +39,15 @@ func _ready():
 #	
 func jouer():
 	var ressourcesTour = jouerTour()
-	printEnsembleBatiment()
-	#printAllRessourcesFromTour()
+	#printEnsembleBatiment()
+	printAllRessourcesFromTour()
 	return ressourcesTour
 	
 #	
 func jouerTour():
+	nourriture=0
+	bois=0
+	charbon=0
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==false):
@@ -65,12 +68,13 @@ func printAllRessourcesFromTour():
 
 
 func checkTypeProduction():
-	if(retour.get_class()=="Nourriture"):
-		nourriture=retour.getQuantite()
-	if(retour.get_class()=="Charbon"):
-		charbon=retour.getQuantite()
-	if(retour.get_class()=="Bois"):
-		bois=retour.getQuantite()
+	if(retour):
+		if(retour.get_class()=="Nourriture"):
+			nourriture+=retour.getQuantite()
+		if(retour.get_class()=="Charbon"):
+			charbon+=retour.getQuantite()
+		if(retour.get_class()=="Bois"):
+			bois+=retour.getQuantite()
 	retour=0
 
 
@@ -87,13 +91,24 @@ func ajoutBatimentMemoire(batimentType,xCoor,zCoor, caseGraphique):
 	for x in range(matrix.size()):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):
-				matrix[x][y].setBatiment(_valeurClass.new())
+				matrix[x][y].setBatiment(_valeurClass.new(),batimentType)
 				matrix[x][y].setCaseGraphique(caseGraphique)
-				print("Batiment :", matrix[x][y].getBatiment())
-				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor,self)
+				#print("Batiment :", matrix[x][y].getBatiment())
+				#print("ajout du noeud matrice", matrix)
+				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor,matrix)
 				return
 	
+func chercheBatiment(batimentRecherche):
+	for x in range(matrix.size()):
+		for y in range(matrix.size()):
+			if (matrix[x][y].getConstructible()==false):
+				if(matrix[x][y].getBatimentNom()==batimentRecherche):
+					return matrix[x][y]
+	return null
 
+pass
+
+			
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

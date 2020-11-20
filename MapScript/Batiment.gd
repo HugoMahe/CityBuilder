@@ -21,7 +21,6 @@ var travailleurs = []
 var x=0
 var y=0
 
-var matrice
 
 # Called when the node enters the scene tree for the first time.
 func produit():
@@ -35,11 +34,6 @@ func set3Dcoordinates(x,y,z):
 	position3Dy=y
 	position3Dz=z
 
-func setCoordonnes(xParam, yParam, matriceParam):
-	matrice=matriceParam
-	x=xParam
-	y=yParam
-	pass
 
 	
 func getCouts():

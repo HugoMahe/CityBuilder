@@ -53,8 +53,8 @@ func getClosestCaseMap(xCoor,zCoor):
 		var recupCle = keys[i].split(";")
 		var valeurX = recupCle[0].split(":")
 		var valeurZ = recupCle[1].split(":")
-		if(xCoor > float(valeurX[0]) and xCoor <  float(valeurX[1])):
-			if(zCoor > float(valeurZ[0]) and zCoor < float(valeurZ[1])):
+		if(xCoor >= float(valeurX[0]) and xCoor <=  float(valeurX[1])):
+			if(zCoor >= float(valeurZ[0]) and zCoor <= float(valeurZ[1])):
 				return mapCase[keys[i]]
 
 func trouverVoisin():

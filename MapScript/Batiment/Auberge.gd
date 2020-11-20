@@ -13,6 +13,8 @@ var caseZ
 var scriptPopulation = load("res://Population/individu.gd")
 var case
 
+var matrice
+
 func _init():
 	coutBois = 250
 	coutNourriture = 150
@@ -44,6 +46,12 @@ func init(spatial,xCoor,zCoor,caseParam):
 	donnerOrdreTous("Produire - nourriture")
 
 
+func setCoordonnes(xParam, yParam, matriceParam):
+	matrice=matriceParam
+	x=xParam
+	y=yParam
+	pass
+
 func produit():
 	return 0
 
@@ -64,8 +72,4 @@ func donnerOrdre(ordre, individu):
 			population[i].nouvelleTache(ordre)
 	pass
 
-func trouveBatimentRecherche(batimentRecherche):
-	case.getCaseLogique()
-
-	pass
 

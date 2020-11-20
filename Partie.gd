@@ -19,6 +19,19 @@ var inMenuPrincipal = false
 var pointeur
 var batimentConstructible
 
+var nbTour =0
+var temps = 0 
+const TIME_PERIOD = 5
+
+func _process(delta):
+	temps +=delta
+	if temps > TIME_PERIOD:
+		print("jouer le tour")
+		ressourceDuTour= map.jouer()
+		remplirStockage()
+		temps=0
+		nbTour += 1
+
 func _ready():
 	#GENERATION DE LA MAP
 	map.genererGrid(5)

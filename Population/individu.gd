@@ -28,6 +28,7 @@ var dansBatiment = false
 #TEST
 var noeudS
 var aubergeAssociee
+var debutTraitement=false
 
 
 
@@ -39,6 +40,7 @@ func _ready():
 
 # FONCTION INITIALISATION DES VARAIABLES D'ETAT
 func init(caseCouranteParam, noeudSpatial,aubergeParam):
+	aubergeAssociee = aubergeParam
 	noeudS = noeudSpatial
 	caseCourante=caseCouranteParam
 	caseObjectif
@@ -61,13 +63,15 @@ func readTrajet():
 
 #retourne un trajet
 func deplacement(trajet):
-	#if(trajet):
-		#print(len(trajet))
-	if((!moving && !finished) || len(trajet)>0):
+	if(trajet):
+		print(len(trajet))
+	if((!moving && !finished) || len(trajet)>0 && dansBatiment==false):
 		bougerVersUneCase(trajet[0])
-	if(finished):
+	if(finished && len(trajet)!=0):
+		print("depilement")
 		trajet.pop_front()
 		if(len(trajet)==0):
+			busy=false
 			tabTrajet.pop_front()
 pass
 
@@ -81,6 +85,7 @@ func getTache():
 
 
 func bougerVersUneCase(objectif):
+	print("lancement bouger")
 	if(caseCourante!=objectif):
 		moving = true
 		finished=false
@@ -107,6 +112,9 @@ pass
 func debutTraitementOrdre():
 	var batimentRecherche = comprendreOrdre()
 	var caseSelectionnee = demanderBatimentCase(batimentRecherche)
+	if(caseSelectionnee):
+		caseObjectif=caseSelectionnee
+		debutTraitement=true
 pass
 
 func comprendreOrdre():
@@ -115,31 +123,33 @@ func comprendreOrdre():
 	print(decompositionOrdre[0])
 	print(decompositionOrdre[1])
 	if("Produire" in decompositionOrdre[0]):
-		print("premiere etape")
 		match decompositionOrdre[1]:
 			" nourriture":
-				print("le lord veut de la nourriture")
 				return "Ferme"
 	pass
 
 
 func demanderBatimentCase(batimentRecherche):
-	aubergeAssociee.trouveBatiment(batimentRecherche)
-	pass
+	#aubergeAssociee.trouveBatimentRecherche(batimentRecherche)
+	 var caseTrouve  =  noeudS.map.chercheBatiment(batimentRecherche).getCaseGraphique()
+	 return caseTrouve
+	 pass
 
 
 
 #UPDATE A CHAQUE FRAME 
 func _process(_delta):
 		refreshCaseCourante()
-		if(ordre):
+		if(ordre && !debutTraitement):
 			print("j'ai un ordre")
 			debutTraitementOrdre()
-		#if(!busy && dansBatiment==false):
-		#	setTrajet(caseCourante.getMap().retrouverChemin(caseCourante,caseObjectif))
-		#else:
+		if(!busy && dansBatiment==false && debutTraitement):
+			print("on commence a traiter - ajout du chemin")
+			setTrajet(caseCourante.getMap().retrouverChemin(caseCourante,caseObjectif))
+			busy=true
+		else:
 			#ajoutMesArbres(readTrajet())
-		#	deplacement(readTrajet())
+			deplacement(readTrajet())
 		refreshBusy()
 pass
 
@@ -155,16 +165,20 @@ func ajoutMesArbres(trajet):
 #VERIFICATION DES ETAPES DU TRAJET
 func refreshCaseCourante():
 	caseCourante = caseCourante.getMap().getClosestCaseMap(positionCouranteX,positionCouranteZ)
+	if(!caseCourante):
+		print("erreur", positionCouranteX, "*", positionCouranteZ)
 	pass
 
 func refreshBusy():
-	if(len(tabTrajet)==0):
+	if(len(tabTrajet)==0 && finished):
 		busy=false
 		if(caseObjectif):
 			self.transform.origin.x = stepify(self.transform.origin.x, 0.1)
 			self.transform.origin.z = stepify(self.transform.origin.z, 0.1)
 			bougerDansLaCase(caseObjectif)
-			dansBatiment = true
+			if(!dansBatiment):
+				caseObjectif.getCaseLogique().getBatiment().addTravailleur(self)
+				dansBatiment = true
 	else:
 		busy=true
 	pass

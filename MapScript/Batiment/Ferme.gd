@@ -1,6 +1,7 @@
 extends Batiment
 class_name Ferme
 var nourritureClass = load("res://Ressources/Nourriture.gd")
+var matrice
 
 func _init():
 	coutBois = 150
@@ -14,14 +15,20 @@ func _ready():
 
 func produit():
 	var nourriture = nourritureClass.new()
-	nourriture.setQuantite(50)
+	nourriture.setQuantite(50*len(travailleurs))
 	return nourriture
 
 func getBatiment():
 	return "Ferme"
 	pass 
 	
-	
+
+func setCoordonnes(xParam, yParam, matriceParam):
+	matrice=matriceParam
+	x=xParam
+	y=yParam
+	pass
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

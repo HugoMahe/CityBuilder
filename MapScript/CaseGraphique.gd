@@ -6,6 +6,7 @@ extends Node
 # var b = "text"
 var mapGraphique;
 var spatial
+var caseLogique setget setCaseLogique, getCaseLogique
 
 var caseTopLeftX
 var caseTopLeftZ
@@ -48,6 +49,13 @@ func setMap(mapParam):
 
 func getMap():
 	return mapGraphique
+
+func setCaseLogique(caseLogiqueParam):
+	caseLogique=caseLogiqueParam
+	pass
+
+func getCaseLogique():
+	return caseLogique
 
 func getRandomPos():
 	var tabPosRng = []

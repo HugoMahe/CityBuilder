@@ -11,8 +11,7 @@ var population = []
 var caseX
 var caseZ
 var scriptPopulation = load("res://Population/individu.gd")
-var x=0
-var y=0
+var case
 
 func _init():
 	coutBois = 250
@@ -28,19 +27,21 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-func init(spatial,xCoor,zCoor,case):
+func init(spatial,xCoor,zCoor,caseParam):
 	caseX = xCoor
 	caseZ = zCoor
+	case = caseParam
 	noeudSpatial = spatial
 	print("spatial reçu")
 	print(spatial)
 	for i in range(nombrePopulationSpawn):
 		var individu = load("res://Models/Individu.dae").instance()
 		individu.transform.origin = Vector3(caseX,1,caseZ)
-		population.insert(i,individu)
+		population.push_front(individu)
 		individu.set_script(scriptPopulation)
-		individu.init(case,noeudSpatial)
+		individu.init(caseParam,noeudSpatial,self)
 		noeudSpatial.add_child(individu)
+	donnerOrdreTous("Produire - nourriture")
 
 
 func produit():
@@ -50,7 +51,21 @@ func getBatiment():
 	return "Auberge"
 	pass 
 	
-func setCoordonnes(xParam, yParam):
-	x=xParam
-	y=yParam
+
+func donnerOrdreTous(ordre):
+	print("lancement methode donner ordre à tous")
+	for i in len(population):
+		population[i].nouvelleTache(ordre)
 	pass
+
+func donnerOrdre(ordre, individu):
+	for i in len(population):
+		if(population[i]==individu):
+			population[i].nouvelleTache(ordre)
+	pass
+
+func trouveBatimentRecherche(batimentRecherche):
+	case.getCaseLogique()
+
+	pass
+

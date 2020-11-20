@@ -5,6 +5,8 @@ var constructible= true setget setConstructible, getConstructible
 var BatimentClasse = load("res://MapScript/Batiment.gd")
 var batiment = null setget setBatiment, getBatiment
 
+var caseGraphique = null setget setCaseGraphique, getCaseGraphique
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -21,7 +23,17 @@ func setConstructible(nouvelleVar):
 func setBatiment(batimentParam):
 	batiment= batimentParam
 	setConstructible(false)
+
+func setCaseGraphique(caseGraphiqueParam):
+	caseGraphique=caseGraphiqueParam
+	caseGraphique.setCaseLogique(self)
+	pass
+
+func getCaseGraphique():
+	return caseGraphique
+	pass
 	
+
 # Détruire un batiment
 func removeBatiment():
 	batiment=null

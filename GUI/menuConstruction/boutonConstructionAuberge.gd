@@ -19,7 +19,7 @@ func _ready():
 
 func _on_TextureButton_pressed():
 	print("Construction de l'auberge possible")
-	get_node("/root/Map").setBooleanConstruction()
+	get_node("/root/Map").setBooleanConstruction(true)
 	get_node("/root/Map").setTypeBatimentConstruction("Auberge")
 	pass
 

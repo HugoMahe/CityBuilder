@@ -68,7 +68,6 @@ func trouverChemin(caseCourante,caseObjectif):
 	if(booleanTrouve==false):
 		listeOuverte.insert(0,caseCourante)
 		caseCourante.cout_f=0
-		print("LISTE OUVERTE SIZE", len(listeOuverte))
 		var meilleurNoeud
 		#DEBUT DU TRAITEMENT TANT QUE MA LISTE OUVERTE N'EST PAS VIDE
 		while(len(listeOuverte)!=0):
@@ -157,13 +156,12 @@ func meilleur_noeud(liste):
 
 #Retrouver son chemin
 func retrouverChemin(caseDestination,caseDepart):
-	print("OKLM")
 	trouverChemin(caseDepart,caseDestination)
 	var cheminAEmprunter = []
 	var caseTraite = caseDestination
 	while caseTraite.pointeurNoeudParent!=caseDepart:
 		cheminAEmprunter.push_back(caseTraite.pointeurNoeudParent)
 		caseTraite = caseTraite.pointeurNoeudParent
-	cheminAEmprunter.push_front(caseDestination)
+	cheminAEmprunter.push_back(caseDepart)
 	return cheminAEmprunter
 	pass

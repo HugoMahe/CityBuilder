@@ -74,12 +74,12 @@ func checkTypeProduction():
 	retour=0
 
 
-func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
+func ajoutBatimentMemoire(batimentType,xCoor,zCoor, caseGraphique):
 	print("Ajout du batiment ", batimentType)
 	var _valeurClass
-	if(batimentType=="auberge"):
+	if(batimentType=="Auberge"):
 		_valeurClass = AubergeClass
-	elif(batimentType=="cabane"):
+	elif(batimentType=="Cabane"):
 		_valeurClass =CabaneClass
 	elif(batimentType=="Ferme"):
 		print("ajout ferme")
@@ -88,8 +88,9 @@ func ajoutBatimentMemoire(batimentType,xCoor,zCoor):
 		for y in range(matrix.size()):
 			if(matrix[x][y].getConstructible()==true):
 				matrix[x][y].setBatiment(_valeurClass.new())
+				matrix[x][y].setCaseGraphique(caseGraphique)
 				print("Batiment :", matrix[x][y].getBatiment())
-				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor)
+				matrix[x][y].getBatiment().setCoordonnes(xCoor,zCoor,self)
 				return
 	
 

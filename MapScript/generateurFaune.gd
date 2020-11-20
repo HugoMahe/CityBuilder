@@ -67,7 +67,7 @@ func placeFlore(tabModeleParam,mapCase,spatial):
 			modele.rotate_y(deg2rad(rand_range(0.0,180.0)))
 			spatial.add_child(modele)
 			maxModele = maxModele -1
-		if(rng>20 && rng<30):
+		if(rng>40 && rng<60):
 			print("generation d'un modele ",tabModeleParam[1])
 			var modele = load(str(tabModeleParam[3])).instance()
 			modele.transform.origin = Vector3(posRng[0],1,posRng[1])

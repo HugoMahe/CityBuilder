@@ -17,6 +17,6 @@ func _ready():
 
 
 func _on_TextureButton_pressed():
-	self.get_parent().get_parent().get_parent().get_parent().get_parent().setBooleanRoute()
+	self.get_parent().get_parent().get_parent().get_parent().get_parent().setBooleanRoute(true)
 	self.get_parent().get_parent().get_parent().get_parent().get_parent().setTypeBatimentConstruction("Route")
 	pass
